@@ -59,13 +59,33 @@
     - ✔️ 3.1.3
 1. Project Metadata
     - ⌨️ Group : com.codingbox
+        - 도메인명칭
     - ⌨️ Artifact : core
+        - 빌드 후 결과물 명칭
     - Name : core
+        - 프로젝트명 (일반적으로 Artifact 동일하게 해주는 편)
     - Description : Demo project for Spring Boot
+        - 프로젝트의 설명
     - Package name : com.codingbox.core
+        - 패키지명 (Group, Artifact를 합쳐서 나오게 된다.)
     - ✔️ Packaging : Jar
-    - ✔️ Java : 
+    - ✔️ Java : 17
         - 장기지원(LTS) 버전인 자바들만 있음.
+
+1. ADD DEVELOPER TOOLS
+    > 어떤 라이브러리를 끌어와서 사용할 것인지 세팅해준다. lib를 buildpath를 대신해줌.
+    - ➕Spring Web WEB
+    - ➕Thymeleaf TEMPLATE ENGINES
+    
+1. GENERATE
+    - 지금까지 세팅한 것을 기반으로 자동으로 설정되고 다운로드 받으면 된다.
+
+1. STS.exe에서 `import projects`
+    1. 📁`gradle`
+    1. 🐘`Existing Gradle Project`
+    3. 📦GENERATE로 만들어진 프로젝트 폴더를 선택
+
+1. 프로젝트에서 `Run As` - `Spring boot App` : 프로젝트 실행
 
 ### Project : Gradle, Maven
 
