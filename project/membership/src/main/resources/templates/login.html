@@ -4,34 +4,24 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>로그인</title>
-	
-	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-	<script src="js/bootstrap.bundle.min.js" defer></script>
-
 </head>
 <body>
-	<main class="container">
-	<form action="" method="post">
-		
-		<h1 class="h3 mb-3 fw-normal">로그인</h1>
-		
-		<div class="input-group has-validation mb-3">
-			<div class="form-floating is-invalid">
-				<input type="text" name="id" id="idInput" class="form-control is-invalid" placeholder="아이디" required/>
-				<label for="idInput">아이디</label>
-			</div>
-			<div class="invalid-feedback">
-				Please choose a username.
-			</div>
+	<main>
+	<h2>로그인</h2>
+	<form method="post" action="/login">
+		<div>
+			<label for="userid">아이디 : </label>
+			<input type="text" name="userid" id="userid"/>
 		</div>
-		
-		<div class="form-floating mb-3">
-			<input type="password" name="password" id="passwordInput" class="form-control" placeholder="비밀번호"/>
-			<label for="passwordInput">비밀번호</label>
+
+		<div>
+			<label for="userpwd">비밀번호 : </label>
+			<input type="password" name="userpwd" id="userpwd"/>
 		</div>
-		
-		<button type="submit" class="btn btn-success w-100 py-2">로그인</button>
-		
+
+		<div>
+			<button type="submit">로그인</button>
+		</div>
 	</form>
 	</main>
 </body>
