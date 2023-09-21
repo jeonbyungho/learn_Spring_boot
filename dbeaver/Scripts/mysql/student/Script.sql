@@ -26,3 +26,8 @@ insert into people values(
 	'user@email.com', '01234', '서울 용산구 한강대로 405'
 )
 ;
+
+-- 로그인
+select * from people p
+where p.id = 'tester01' and p.password = 't1234'
+;
