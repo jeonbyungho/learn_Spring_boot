@@ -1,0 +1,15 @@
+CREATE TABLE MEMBER (
+		id		NUMBER(10) PRIMARY KEY
+	,	name	VARCHAR(600)
+)
+;
+
+CREATE SEQUENCE member_seq START WITH 1 INCREMENT BY 1
+;
+
+SELECT * FROM MEMBER
+;
+
+INSERT INTO MEMBER VALUES (member_seq.nextval, '자바학생')
+INSERT INTO MEMBER VALUES (member_seq.nextval, 'JSP학생')
+;

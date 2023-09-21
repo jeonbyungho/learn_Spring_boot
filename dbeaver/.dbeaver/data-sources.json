@@ -4,7 +4,7 @@
 		"oracle_thin-18ab5d5541a-35ffd061539a1441": {
 			"provider": "oracle",
 			"driver": "oracle_thin",
-			"name": "system-localhost",
+			"name": "system",
 			"save-password": true,
 			"configuration": {
 				"host": "localhost",
@@ -24,7 +24,7 @@
 		"oracle_thin-18ab5d683f4-5d79bb5e2972b826": {
 			"provider": "oracle",
 			"driver": "oracle_thin",
-			"name": "springweb-localhost",
+			"name": "springweb",
 			"save-password": true,
 			"configuration": {
 				"host": "localhost",
