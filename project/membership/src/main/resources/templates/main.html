@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<table th:if="${person != null}">
+		<tr>
+			<th>index</th>
+			<td th:text="${person.idx}"></td>
+		</tr>
+		<tr>
+			<th>아이디</th> 
+			<td th:text="${person.id}"></td>
+		</tr>
+		<tr>
+			<th>패스워드</th>
+			<td th:text="${person.password}"></td>
+		</tr>
+		<tr>
+			<th>이름</th>
+			<td th:text="${person.name}"></td>
+		</tr>
+		<tr>
+			<th>생일</th>
+			<td th:text="${person.birthday}"></td>
+		</tr>
+		<tr>
+			<th>성별</th>
+			<td th:text="${person.gender}"></td>
+		</tr>
+		<tr>
+			<th>전화번호</th>
+			<td th:text="${person.phone}"></td>
+		</tr>
+		<tr>
+			<th>이메일</th>
+			<td th:text="${person.email}"></td>
+		</tr>
+		<tr>
+			<th>우편번호</th>
+			<td th:text="${person.postcode}"></td>
+		</tr>
+		<tr>
+			<th>주소</th>
+			<td th:text="${person.address}"></td>
+		</tr>
+	</table>
+</body>
+</html>

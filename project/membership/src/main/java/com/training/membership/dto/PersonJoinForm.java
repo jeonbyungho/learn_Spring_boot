@@ -1,6 +1,6 @@
 package com.training.membership.dto;
 
-public class MemberJoinForm {
+public class PersonJoinForm {
 	private String userid;
 	private String userpwd;
 	private String name;

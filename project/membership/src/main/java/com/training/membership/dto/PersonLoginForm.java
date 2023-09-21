@@ -1,6 +1,6 @@
 package com.training.membership.dto;
 
-public class MemberLoginForm {
+public class PersonLoginForm {
 	private String userid;
 	private String userpwd;
 	public String getUserid() {

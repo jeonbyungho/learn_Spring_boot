@@ -1,6 +1,7 @@
 package com.training.membership.dto;
 
-public class Member {
+public class Person {
+	
 	private int idx;
 	private String id;
 	private String password;
