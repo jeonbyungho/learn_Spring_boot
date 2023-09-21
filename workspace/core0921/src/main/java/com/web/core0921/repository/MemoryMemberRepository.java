@@ -5,11 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.stereotype.Repository;
-
 import com.web.core0921.dto.Member;
 
-@Repository
+
+//@Repository
 public class MemoryMemberRepository implements MemberRepository{
 	
 	// 메모리 저장소

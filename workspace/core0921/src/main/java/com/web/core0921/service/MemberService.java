@@ -6,16 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.web.core0921.dto.Member;
-import com.web.core0921.repository.MemoryMemberRepository;
+import com.web.core0921.repository.MemberRepository;
 
+import jakarta.transaction.Transactional;
+
+@Transactional 
 @Service
 public class MemberService {
 	
-	// MemoryMemberRepository memberRepository = new MemoryMemberRepository();
-	private final MemoryMemberRepository memberRepository;
+	private final MemberRepository memberRepository;
 	
 	@Autowired
-	public MemberService(MemoryMemberRepository memberRepository) {
+	public MemberService(MemberRepository memberRepository) {
 		this.memberRepository = memberRepository;
 	}
 	
