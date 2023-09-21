@@ -56,7 +56,7 @@ public class MemberController {
 	
 	@Autowired
 	public MemberController(MemberService memberService) {
-		this.MemberService = MemberService;
+		this.MemberService = memberService;
 	}
 }
 ```
