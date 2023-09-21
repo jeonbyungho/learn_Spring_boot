@@ -6,13 +6,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class MemberController {
 	
-	@RequestMapping("/singup")
-	public String getSingupView() {
-		return "singup";
+	@RequestMapping("/join")
+	public String getJoin() {
+		return "join";
 	}
 	
 	@RequestMapping("/login")
-	public String getloginView() {
+	public String getlogin() {
 		return "login";
 	}
 }
