@@ -64,14 +64,14 @@ public class MemberController {
 ```java
 @Service
 public class MemberService {
-	
+	...
 }
 ```
 
 ```java
 @Repository
 public class MemberRepository {
-	
+	...
 }
 ```
 
