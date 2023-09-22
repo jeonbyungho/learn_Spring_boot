@@ -24,8 +24,9 @@ Service 클래스에 어노테이션을 집어넣어 컨테이너에 bean으로 
    - `rootProject.name = 'project name'`
 
 # cannot reliably process 'persist' call
+```log
 jakarta.persistence.TransactionRequiredException: No EntityManager with actual transaction available for current thread - cannot reliably process 'persist' call
-
+```
 Service 클래스에 `@Transactional`를 추가해야 한다.
 
 # Cannot load driver class: com.mysql.cj.jdbc.Driver
