@@ -35,3 +35,7 @@ insert into person values(
 select * from person p
 where p.id = 'tester01' and p.password = 't1234'
 ;
+
+-- 이메일로 아이디 찾기
+select p.id from person p where p.email = 'user@email.com'
+;

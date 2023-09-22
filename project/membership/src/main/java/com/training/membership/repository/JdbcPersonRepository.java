@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -55,16 +57,16 @@ public class JdbcPersonRepository implements PersonRepository{
 	}
 
 	@Override
-	public Person login(PersonLoginForm form) {
-		System.out.println("@Repository" + form.toString());
+	public Person login(String id, String password) {
+		System.out.println("@Repository" + " id : "+ id + "password : "+ password);
 		
 		final String sql = "select * from person p where p.id = ? and p.password = ?";
 		Person person = new Person();
 		
 		try(Connection conn = dataSource.getConnection()){
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, form.getUserid());
-			pstmt.setString(2, form.getUserpwd());
+			pstmt.setString(1, id);
+			pstmt.setString(2, password);
 			
 			ResultSet rs = pstmt.executeQuery();
 			ResultSetMetaData rsd = rs.getMetaData();
@@ -89,6 +91,24 @@ public class JdbcPersonRepository implements PersonRepository{
 		}
 		
 		return person;
+	}
+
+	@Override
+	public List<String> searchId(String email) {
+		System.out.println("@Repository" + " email : "+ email);
+		
+		final String sql = "select p.id from person p where p.email = ?";
+		List<String> list = new ArrayList<>();
+		
+		try(Connection conn = dataSource.getConnection()){
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) list.add(rs.getString(1));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 }

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Insert title here</title>
+</head>
+<body>
+	<form method="post" action="/search">
+		<label for="email">이메일 : </label>
+		<input type="text" name="email" id="email"/>
+		<button type="submit">찾기</button>
+	</form>
+	
+	<ul th:if="${personIdList != null}">
+		<li th:each="id : ${personIdList}">
+			<span th:text="${id}"></span>
+		</li>
+	</ul>
+</body>
+</html>
