@@ -25,7 +25,7 @@ select * from person p
 
 -- 생성
 insert into person values(
-	0, 'tester01', 't1234', '김실험', 
+	0, 'user01', 'u1234', '김철수', 
 	'2023-09-21', 'o', '01023456789',
 	'user@email.com', '01234', '서울 용산구 한강대로 405'
 )

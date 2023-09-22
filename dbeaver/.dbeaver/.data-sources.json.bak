@@ -4,7 +4,7 @@
 		"oracle_thin-18ab5d5541a-35ffd061539a1441": {
 			"provider": "oracle",
 			"driver": "oracle_thin",
-			"name": "localhost",
+			"name": "oracle",
 			"save-password": true,
 			"configuration": {
 				"host": "localhost",
@@ -19,6 +19,24 @@
 					"@dbeaver-sid-service@": "SERVICE"
 				},
 				"auth-model": "oracle_native"
+			}
+		},
+		"mysql8-18ab6a65ee2-7a1baebacdd5fea5": {
+			"provider": "mysql",
+			"driver": "mysql8",
+			"name": "mysql",
+			"save-password": true,
+			"configuration": {
+				"host": "localhost",
+				"port": "3306",
+				"url": "jdbc:mysql://localhost:3306/",
+				"configurationType": "MANUAL",
+				"home": "C:\\Program Files\\MySQL\\MySQL Server 8.0",
+				"type": "dev",
+				"auth-model": "native"
+			},
+			"custom-properties": {
+				"SQLEditor.outputPanel.autoShow": "false"
 			}
 		}
 	},
