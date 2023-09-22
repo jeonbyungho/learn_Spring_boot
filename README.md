@@ -14,7 +14,10 @@
 # Chapter 3 9월 22일
 1. [요청 데이터 불러오기](md/day03/01.request_parameter.md)
 1. [lombok 세팅](md/day03/02.lombok.md)
+1. [03.thymeleaf](md/day03/03.thymeleaf.md)
 
 # 🌐Spring
 - [공식 홈페이지](https://spring.io/)
 - [문서](https://docs.spring.io/spring-boot/docs/current/reference/html/)
+- [spring initializr](https://start.spring.io/)
+- [thymeleaf](https://www.thymeleaf.org/)
