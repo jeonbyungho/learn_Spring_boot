@@ -8,6 +8,11 @@
 # Chapter 2 9월 21일
 
 1. [스프링 컨테이너](md/day02/01.spring_container.md)
+1. [의존성 주입](md/day02/02.dependency.md)
+1. [JPA](md/day02/03.jap.md)
+
+# Chapter 3 9월 22일
+1. [요청 데이터 불러오기](md/day02/01.request_parameter.md)
 
 # 🌐Spring
 - [공식 홈페이지](https://spring.io/)
