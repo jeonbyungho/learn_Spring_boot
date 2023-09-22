@@ -2,12 +2,15 @@ package com.web.core0922.basic;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
-public class HelloData {
+public class User {
 	private String username;
 	private int age;
+	public User(String username, int age) {
+		super();
+		this.username = username;
+		this.age = age;
+	}
 }

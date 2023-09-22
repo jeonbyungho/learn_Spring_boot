@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Spring EL 표현식</title>
+</head>
+<body>
+	<h3>Object</h3>
+	<ul>
+		<li>
+			${user.username} =
+			<span th:text="${user.username}"></span>
+		</li>
+		<li>
+			${user['username']} =
+			<span th:text="${user['username']}"></span>
+		</li>
+		<li>
+			${user.getUsername()} =
+			<span th:text="${user.getUsername()}"></span>
+		</li>
+	</ul>
+	
+	<h3>List [0]</h3>
+	<ul th:if="${usersList[0]} != null">
+		<li>
+			${usersList[0].username} =
+			<span th:text="${usersList[0].username}"></span>
+		</li>
+		<li>
+			${usersList[0]['username']} =
+			<span th:text="${usersList[0]['username']}"></span>
+		</li>
+		<li>
+			${usersList[0].getUsername()} =
+			<span th:text="${usersList[0].getUsername()}"></span>
+		</li>
+	</ul>
+	
+	<h3>List [1]</h3>
+	<ul th:if="${usersList[1]} != null">
+		<li>
+			${usersList[1].username} =
+			<span th:text="${usersList[1].username}"></span>
+		</li>
+		<li>
+			${usersList[1]['username']} =
+			<span th:text="${usersList[1]['username']}"></span>
+		</li>
+		<li>
+			${usersList[1].getUsername()} =
+			<span th:text="${usersList[1].getUsername()}"></span>
+		</li>
+	</ul>
+	
+	<h3>List Each</h3>
+	<ul th:each="i : ${usersList}">
+		<li>
+			${i.username} =
+			<span th:text="${i.username}"></span>
+		</li>
+		<li>
+			${i['username']} =
+			<span th:text="${i['username']}"></span>
+		</li>
+		<li>
+			${i.getUsername()} =
+			<span th:text="${i.getUsername()}"></span>
+		</li>
+	</ul>
+	
+	<h3>Map['item']</h3>
+	<ul>
+		<li>
+			${usersMap['UserA'].username} =
+			<span th:text="${usersMap['UserA'].username}"></span>
+		</li>
+		<li>
+			${usersMap['UserA']['username']} =
+			<span th:text="${usersMap['UserA']['username']}"></span>
+		</li>
+		<li>
+			${usersMap['UserA'].getUsername()} =
+			<span th:text="${usersMap['UserA'].getUsername()}"></span>
+		</li>
+	</ul>
+	
+	<h3>Map.item</h3>
+	<ul>
+		<li>
+			${usersMap.UserB.username} =
+			<span th:text="${usersMap.UserB.username}"></span>
+		</li>
+		<li>
+			${usersMap.UserB['username']} =
+			<span th:text="${usersMap.UserB['username']}"></span>
+		</li>
+		<li>
+			${usersMap.UserB.getUsername()} =
+			<span th:text="${usersMap.UserB.getUsername()}"></span>
+		</li>
+	</ul>
+	
+	<h3>Map Each</h3>
+	<ul th:each="i : ${usersMap}">
+		<li>
+			<span th:text="${i.key}"></span>
+			<span th:text="${i.value.username}"></span>
+			<span th:text="${i.value.age}"></span>
+		</li>
+	</ul>
+</body>
+</html>

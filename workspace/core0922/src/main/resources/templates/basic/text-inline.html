@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>텍스트 inline</title>
+</head>
+<body>
+	<h1>
+		<span th:inline="none">[[]] vs [{}]</span>		
+	</h1>
+	<ul>
+		<li>
+			<span th:inline="none">[[...]] = </span>[[${data}]]
+		</li>
+		<li>
+			<span th:inline="none">[(...)] = </span>[(${data})]
+		</li>
+	</ul>
+</body>
+</html>
