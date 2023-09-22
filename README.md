@@ -12,7 +12,8 @@
 1. [JPA](md/day02/03.jap.md)
 
 # Chapter 3 9월 22일
-1. [요청 데이터 불러오기](md/day02/01.request_parameter.md)
+1. [요청 데이터 불러오기](md/day03/01.request_parameter.md)
+1. [lombok 세팅](md/day03/02.lombok.md)
 
 # 🌐Spring
 - [공식 홈페이지](https://spring.io/)
