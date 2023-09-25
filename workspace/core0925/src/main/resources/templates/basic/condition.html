@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>조건문</title>
+</head>
+<body>
+	<h1>if, unless</h1>
+	<table border="1">
+		<tr>
+			<th>count</th>
+			<th>이름</th>
+			<th>나이</th>
+		</tr>
+		<tr th:each="user : ${userList}">
+			<td th:text="${userStat.count}">
+				count
+			</td>
+			<td th:text="${user.name}">
+				username
+			</td>
+			<td>
+				<span th:text="${user.age}">age</span>
+				<span th:if="${user.age} < 20">미성년자</span>
+				<span th:text="'미성년자'" th:unless="${user.age >= 20}"></span>
+			</td>
+		</tr>
+	</table>
+	
+	<h1>switch</h1>
+	<table border="1">
+		<tr>
+			<th>count</th>
+			<th>이름</th>
+			<th>나이</th>
+		</tr>
+		<tr th:each="user : ${userList}">
+			<td th:text="${userStat.count}">count</td>
+			<td th:text="${user.name}">name</td>
+			<td th:switch="${user.age}">
+				<span th:case="10">10살</span>
+				<span th:case="22">22살</span>
+				<span th:case="45">45살</span>
+				<span th:case="*">기타</span>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>속성 값 설정</title>
+</head>
+<body>
+	<h1>속성 값 설정</h1>
+	<!--
+		<input type="text" name="mock" th:name="userA"/>
+		타임리프에서 name="mock"보다 th:name="userA"가 우선순위가 높아. 브라우저상에서 name이 userA로 표기된다.
+	-->
+	<input type="text" name="mock" th:name="userA"/>
+	<p>타임리프에서 name="mock"보다 th:name="userA"가 우선순위가 높아,<br>브라우저상에서 name의 값이 userA로 표기된다.</p>
+	
+	<h2>속성 추가</h2>
+	<ul>
+		<li>
+			<label for="attrappend">th:attrappend </label>
+			<input type="text" id="attrappend" class="text" th:attrappend="class='large'"/>
+			<p>input class="textlarge"</p>
+		</li>
+		
+		<li>
+			<label for="attrprepend">th:attrprepend </label>
+			<input type="text" id="attrprepend" class="text" th:attrprepend="class='large'"/>
+			<p>class="largetext"</p>
+		</li>
+		
+		<li>
+			<label for="classappend">th:classappend </label>
+			<input type="text" id="classappend" class="text" th:classappend="large"/>
+			<p>class="text large"</p>
+		</li>
+	</ul>
+	
+	<h2>checked 처리</h2>
+	<ul>
+		<li>
+			<label>th:checked="true"
+				<input type="checkbox" name="active" th:checked="true"/>
+			</label>
+		</li>
+		<li>
+			<label>th:checked="false"
+				<input type="checkbox" name="active" th:checked="false"/>
+			</label>
+		</li>
+		<li>
+			<label>checked="false"
+				<input type="checkbox" name="active" checked="false"/>
+			</label>
+		</li>
+	</ul>
+</body>
+</html>

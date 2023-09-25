@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>연산</title>
+</head>
+<body>
+	<ul>
+		<li>
+			<h3>산술 연산</h3>
+			<ul>
+				<li>
+					5 + 2 = <span th:text="5 + 2"></span>
+				</li>
+				<li>
+					5 % 2 == 0 : <span th:text="5 % 2 == 0"></span>
+				</li>
+			</ul>
+		</li>
+		
+		<li>
+			<h3>비교 연산</h3>
+			<ol>
+				<li>
+					1 > 10 = <span th:text ="1 &gt; 10"></span>
+				</li>
+				<li>
+					1 gt 10 = <span th:text ="1 gt 10"></span>
+				</li>
+			</ol>
+			
+			<ol>
+				<li>
+					1 >= 10 = <span th:text ="1 >= 10"></span>
+				</li>
+				<li>
+					1 ge 10 = <span th:text ="1 ge 10"></span>
+				</li>
+			</ol>
+			
+			<ol>
+				<li>
+					1 == 10 = <span th:text ="1 == 10"></span>
+				</li>
+				<li>
+					1 eq 10 = <span th:text ="1 eq 10"></span>
+				</li>
+			</ol>
+			
+			<ol>
+				<li>
+					1 != 10 = <span th:text ="1 != 10"></span>
+				</li>
+				<li>
+					1 neq 10 = <span th:text ="1 neq 10"></span>
+				</li>
+			</ol>
+		</li>
+		
+		<li>
+			<h3>삼항 연산자</h3>
+			<ul>
+				<li>(1 == 0)? '참': '거짓' =
+					<span th:text="(1 == 0)? '참': '거짓'"></span>
+				</li>
+			</ul>
+		</li>
+		
+		<li>
+			<h3>Elvis 연산자</h3>
+			<ul>
+				<li>${data}? 'value not exist!!' : 
+					<span th:text="${data}?: 'value not exist!!'"></span>
+				</li>
+				
+				<li>${nullData}? 'value not exist!!' : 
+					<span th:text="${nullData}?: 'value not exist!!'"></span>
+				</li>
+			</ul>
+		</li>
+		
+		<li>
+			<h3>No-Operation</h3>
+			<ul>
+				<li>${data}?_ : 
+					<span th:text="${data}?:_">value not exist!!</span>
+				</li>
+				
+				<li>${nullData}?_ : 
+					<span th:text="${nullData}?:_">value not exist!!</span>
+				</li>
+			</ul>
+			<p>출력값이 <code>_</code>인 있을 경우, 태그 안의 text로 출력값이 대체된다</p>
+		</li>
+	</ul>
+</body>
+</html>

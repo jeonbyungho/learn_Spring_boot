@@ -15,4 +15,6 @@ public class HomeController {
 		model.addAttribute("data", now);
 		return "home";
 	}
+	
+	
 }

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Link</title>
+</head>
+<body>
+	<h1>URL 링크</h1>
+	<ul>
+		<li>
+			<a th:href="@{/hello}">basic url</a>
+		</li>
+		<li>
+			<p>/hello(param1=${param1},param2=${param2})</p>
+			<a th:href="@{/hello(param1=${param1},param2=${param2})}">
+				query string parameter
+			</a>
+		</li>
+		<li>
+			<p>/hello/{param1}/{param2}(param1=${param1},param2=${param2})</p>
+			<a th:href="@{/hello/{param1}/{param2}(param1=${param1},param2=${param2})}">
+				path variable
+			</a>
+		</li>
+		<li>
+			<p>/hello/{param1}(param1=${param1}, param2=${param2})</p>
+			<a th:href="@{/hello/{param1}(param1=${param1}, param2=${param2})}">
+				path variable + query string
+			</a>
+		</li>
+	</ul>
+	<p>URI 변수 : {파라미터}(파라미터=${파라미터})</p>
+	<p>쿼리 스트링 : (파라미터=${파라미터})</p>
+</body>
+</html>

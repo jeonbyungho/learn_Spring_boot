@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>반복문</title>
+</head>
+<body>
+	<h1>테이블</h1>
+	<table border="1">
+		<tr>
+			<th>이름</th>
+			<th>나이</th>
+		</tr>
+		
+		<tr th:each="user : ${userList}">
+			<td th:text="${user.name}">username</td>
+			<td th:text="${user.age}">age</td>
+		</tr>
+	</table>
+	
+	<h2>반복 상태 유지 - 명시적 선언</h2>
+	<table border="1">
+		<tr>
+				<th>index</th>
+				<th>count</th>
+				<th>이름</th>
+				<th>나이</th>
+				<th>size</th>
+				<th>first</th>
+				<th>last</th>
+				<th>current</th>
+		</tr>
+		<!-- userStat: 현재 loop에 대한 상태를 알려준다. -->
+		<tr th:each="user, userStat : ${userList}">
+			<td th:text="${userStat.index}">index</td>
+			<td th:text="${userStat.count}">count</td>
+			<td th:text="${user.name}">username</td>
+			<td th:text="${user.age}">age</td>
+			<td th:text="${userStat.size}">size</td>
+			<td th:text="${userStat.first}">first</td>
+			<td th:text="${userStat.last}">last</td>
+			<td th:text="${userStat.current}">current</td>
+		</tr>
+	</table>
+	
+	<h2>반복 상태 유지 - 명시적 선언 생략</h2>
+	<table border="1">
+		<tr>
+				<th>index</th>
+				<th>count</th>
+				<th>이름</th>
+				<th>나이</th>
+				<th>size</th>
+				<th>first</th>
+				<th>last</th>
+				<th>current</th>
+		</tr>
+		<!-- userStat: 현재 loop에 대한 상태를 알려준다. -->
+		<tr th:each="user : ${userList}">
+			<td th:text="${userStat.index}">index</td>
+			<td th:text="${userStat.count}">count</td>
+			<td th:text="${user.name}">username</td>
+			<td th:text="${user.age}">age</td>
+			<td th:text="${userStat.size}">size</td>
+			<td th:text="${userStat.first}">first</td>
+			<td th:text="${userStat.last}">last</td>
+			<td th:text="${userStat.current}">current</td>
+		</tr>
+	</table>
+</body>
+</html>

@@ -110,5 +110,12 @@
 			<span th:text="${i.value.age}"></span>
 		</li>
 	</ul>
+	
+	<h3>지역 변수 with</h3>
+	<ul th:with="first=${usersList[0]}">
+		<li>
+			처음 사람의 이름은 <span th:text="${first.username}"></span>
+		</li>
+	</ul>
 </body>
 </html>
