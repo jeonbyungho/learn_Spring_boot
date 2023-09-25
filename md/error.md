@@ -44,3 +44,6 @@ mysql jdbc Driver가 존재하지 않아 발생하는 런타임 에러이다.
 1. 기존 `*Application` Delecte
 1. 🖱️New - 🖱️Spring boot App - 🖱️Search - 삭제했던 `*Application`을 선택하여 Main type을 생성
 1. 🖱️Apply
+
+# org.thymeleaf.exceptions.TemplateProcessingException: Could not parse as expression: "hello world" (template: "basic/literal" - line 12, col 10)
+html 타임 리프 th 안에 parsing 문제로 에러가 난다. ''로 감싸거 띄어쓰기를 인식 시키거나 파싱이 잘 되도록 띄어쓰기를 없애고, 문장끼리 + 연산자를 이용해 이어 붙여 조치를 취하면 된다.
