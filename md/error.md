@@ -35,3 +35,12 @@ org.springframework.beans.factory.BeanCreationException: Error creating bean wit
 ```
 
 mysql jdbc Driver가 존재하지 않아 발생하는 런타임 에러이다.
+
+# 오류: 기본 클래스 com.domain.core.coreApplication을(를) 찾거나 로드할 수 없습니다.
+원인: java.lang.NoClassDefFoundError: com.domain.core.coreApplication (wrong name: com/domain/core/coreApplication을)
+[출처](https://velog.io/@y_dragonrise/Error-%EC%98%A4%EB%A5%98-%EA%B8%B0%EB%B3%B8-%ED%81%B4%EB%9E%98%EC%8A%A4%EC%9D%84%EB%A5%BC-%EC%B0%BE%EA%B1%B0%EB%82%98-%EB%A1%9C%EB%93%9C%ED%95%A0-%EC%88%98-%EC%97%86%EC%8A%B5%EB%8B%88%EB%8B%A4)
+
+1. 🖱️project - 🖱️properties - 🖱️Run/Debug Settings
+1. 기존 `*Application` Delecte
+1. 🖱️New - 🖱️Spring boot App - 🖱️Search - 삭제했던 `*Application`을 선택하여 Main type을 생성
+1. 🖱️Apply
