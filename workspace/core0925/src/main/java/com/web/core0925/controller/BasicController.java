@@ -65,6 +65,25 @@ public class BasicController {
 		return "basic/condition";
 	}
 	
+	@GetMapping("/comments")
+	public String comments(Model model) {
+		model.addAttribute("data", "spring");
+		return "basic/comments";
+	}
+	
+	@GetMapping("/block")
+	public String block(Model model) {
+		addUser(model);
+		return "basic/block";
+	}
+	
+	@GetMapping("/js")
+	public String javascript(Model model) {
+		model.addAttribute("user", new User("userOther", 15));
+		addUser(model);
+		return "basic/inline_js";
+	}
+	
 	private void addUser(Model model) {
 		List<User> list = new ArrayList<User>();
 		list.add(new User("userOne", 10));
@@ -74,11 +93,5 @@ public class BasicController {
 		list.add(new User("userFive", 57));
 		list.add(new User("userSix", 66));
 		model.addAttribute("userList",list);
-	}
-	
-	@GetMapping("/comments")
-	public String comments(Model model) {
-		model.addAttribute("data", "spring");
-		return "basic/comments";
 	}
 }

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>자바스크립트</title>
+</head>
+<body>
+	<!--/*
+		자바스크립트 inline 사용 전, thymeleaf 순수 자바 스크립트를 삽입.
+	*/-->
+	<script>
+		const username = '[[${user.name}]]';
+		const age = [[${user.age}]];
+		const user = "[[${user}]]";
+		console.log(username, age);
+		console.log(user);
+	</script>
+	
+	<!--/*
+		자바스크립트 lnline 사용 후
+			자바스크립트 블록안에 타임리프 구문을 사용할 수 있음.
+			자바의 객체가 자바스크립트 객체의 맞게 변환됨.
+	*/-->
+	
+	<script th:inline="javascript">
+		const thUsername = [[${user.name}]];
+		const thAge = [[${user.age}]];
+		const thUser = [[${user}]];
+		console.log(thUsername, thAge);
+		console.log(thUser);
+	</script>
+	
+	<!--/* 자바스크립트 인라인 each */-->
+	<script th:inline="javascript">
+		const thUserList = [[${userList}]];
+		console.table(thUserList);
+		[# th:each="user : ${userList}"]
+			const thUser[[${userStat.count}]] = [[${user}]];
+			console.log(thUser[[${userStat.count}]]);
+		[/]
+	</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>부분 포함</title>
+</head>
+<body>
+	<h2>부분 포함 th:insert</h2>
+	<p>적용 태그안에 내용을 삽입한다.</p>
+	<div th:insert="~{template/fragment/footer :: copy}"></div>
+	
+	<hr>
+	
+	<h2>부분 포함 th:replace</h2>
+	<p>적용 태그를 내용물로 완전히 교체한다.</p>
+	<div th:replace="~{template/fragment/footer :: copy}"></div>
+	
+	<hr>
+	
+	<h2>Parameter 사용</h2>
+	<p>적용 태그를 내용물로 완전히 교체한다.</p>
+	<div th:replace=
+		"~{template/fragment/footer :: copyParam('Data', 1234)}"></div>
+	
+	<hr>
+</body>
+</html>
