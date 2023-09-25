@@ -18,7 +18,7 @@
 
 # Chapter 4 [9월 25일]
 1. [기본 객체](md/day04/01.object.md)
-1. [연산자](md/day04/02.operation.md)
+1. [Thymeleaf](md/day04/02.thymeleaf.md)
 
 # 🌐Spring
 - [공식 홈페이지](https://spring.io/)
