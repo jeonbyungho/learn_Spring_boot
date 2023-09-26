@@ -76,8 +76,9 @@ public class BasicItemController {
 	@PostMapping("/add")
 	public String saveItem(Item itemData) {
 		System.out.println(itemData.toString());
-		itemRepository.save(itemData);
-		return "redirect:/basic/items";
+		Item item = itemRepository.save(itemData);
+		
+		return "redirect:/basic/items/" + item.getId();
 	}
 	
 	/**상품 수정 페이지 이동*/
