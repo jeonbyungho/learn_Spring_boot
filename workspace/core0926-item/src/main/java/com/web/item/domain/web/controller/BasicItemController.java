@@ -105,7 +105,6 @@ public class BasicItemController {
 			@PathVariable("itemId") Long itemId,
 			@ModelAttribute Item itemData) {
 		itemRepository.update(itemId, itemData);
-		return "redirect:/basic/items";
-		//return "redirect:/basic/items/" + itemId;
+		return "redirect:/basic/items/{itemId}";
 	}
 }
