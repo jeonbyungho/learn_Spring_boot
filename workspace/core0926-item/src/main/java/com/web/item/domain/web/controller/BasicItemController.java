@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -72,12 +73,18 @@ public class BasicItemController {
 		return "basic/addForm";
 	}
 	
-	/**상품 추가*/
+	/**상품 추가
+	 * @ModelAttribute("")안 파라미터 명을 생략 시 ,
+	 * model에 저장되는 name은 클래스명 첫 글자만 소문자로 등록
+	 * <code>Item => itme</code>*/
 	@PostMapping("/add")
-	public String saveItem(Item itemData) {
-		System.out.println(itemData.toString());
-		Item item = itemRepository.save(itemData);
-		
+	//public String saveItem(@ModelAttribute("item") Item itemData) {
+	//public String saveItem(@ModelAttribute Item itemData, Model model) {
+	//public String saveItem(Item itemData) {
+	public String saveItem(@ModelAttribute Item itemData) {
+		//System.out.println("┌─itemData save 전 : " + model.getAttribute("item").toString());
+		itemRepository.save(itemData);
+		//System.out.println("└─itemData save 후 : " + model.getAttribute("item").toString());
 		return "redirect:/basic/items";
 	}
 	
