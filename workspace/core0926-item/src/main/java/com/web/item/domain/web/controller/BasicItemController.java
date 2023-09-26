@@ -85,7 +85,7 @@ public class BasicItemController {
 		//System.out.println("┌─itemData save 전 : " + model.getAttribute("item").toString());
 		itemRepository.save(itemData);
 		//System.out.println("└─itemData save 후 : " + model.getAttribute("item").toString());
-		return "redirect:/basic/items";
+		return "redirect:/basic/items/" + itemData.getId();
 	}
 	
 	/**상품 수정 페이지 이동*/
