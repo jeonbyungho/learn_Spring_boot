@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>입력</title>
+</head>
+<body>
+	<form action="#" th:action th:object="${consumerForm}" method="post">
+		<div>
+			<input type="text" th:field="*{userid}" placeholder="아이디"/>
+			<div 
+				th:if="${#fields.hasErrors('userid')}" 
+				th:errors="*{userid}">ID Error</div>
+		</div>
+		<div>
+			<input type="password" th:field="*{password}" placeholder="비밀번호"/>
+			<div 
+				th:if="${#fields.hasErrors('password')}" 
+				th:errors="*{password}">Password Error</div>
+		</div>
+		<div>
+			<input type="text" th:field="*{name}" placeholder="이름"/>
+			<div 
+				th:if="${#fields.hasErrors('name')}" 
+				th:errors="*{name}">Name Error</div>
+		</div>
+		<div>
+			<input type="text" th:field="*{age}" placeholder="나이"/>
+			<div 
+				th:if="${#fields.hasErrors('age')}" 
+				th:errors="*{age}">Age Error</div>
+		</div>
+		<div>
+			<input type="text" th:field="*{email}" placeholder="이메일"/>
+			<div 
+				th:if="${#fields.hasErrors('email')}" 
+				th:errors="*{email}">Email Error</div>
+		</div>
+		<div>
+			<input type="text" th:field="*{gender}" placeholder="성별"/>
+			<div 
+				th:if="${#fields.hasErrors('gender')}" 
+				th:errors="*{gender}">Age Error</div>
+		</div>
+		
+		<div>
+			<button type="submit">제출</button>
+		</div>
+	</form>
+</body>
+</html>
