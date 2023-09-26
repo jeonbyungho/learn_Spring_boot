@@ -66,15 +66,37 @@ public class BasicItemController {
 		return "basic/item";
 	}
 	
+	/**상품 추가 페이지 이동*/
 	@GetMapping("/add")
 	public String getItemAddForm() {
 		return "basic/addForm";
 	}
 	
+	/**상품 추가*/
 	@PostMapping("/add")
-	public String saveItem(Item item) {
-		System.out.println(item.toString());
-		itemRepository.save(item);
+	public String saveItem(Item itemData) {
+		System.out.println(itemData.toString());
+		itemRepository.save(itemData);
 		return "redirect:/basic/items";
+	}
+	
+	/**상품 수정 페이지 이동*/
+	@GetMapping("/edit/{itemId}")
+	public String getItemEditForm(
+			@PathVariable("itemId") Long itemId,
+			Model model) {
+		Item item = itemRepository.findById(itemId);
+		model.addAttribute("item", item);
+		System.out.println(item.toString());
+		return "basic/editForm";
+	}
+	
+	/**상품 수정*/
+	@PostMapping("/edit/{itemId}")
+	public String updatItem(
+			@PathVariable("itemId") Long itemId,
+			Item itemData) {
+		itemRepository.update(itemId, itemData);
+		return "redirect:/basic/items/" + itemId;
 	}
 }
