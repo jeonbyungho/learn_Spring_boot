@@ -23,6 +23,7 @@ import jakarta.persistence.Query;
 public class PeopleController {
 	
 	private final PeopleRepository peopleRepository;
+	@Deprecated
 	private final EntityManager em; 
 	
 	@Autowired
@@ -38,6 +39,7 @@ public class PeopleController {
 	
 //	＃EntityManager
 //	@PostMapping("/login")
+	@Deprecated
 	public @ResponseBody People login_em(@RequestParam String id, @RequestParam String password) {
 		Query query = em.createQuery("select p from person p where p.id = :id and p.password = :password", People.class);
 		query.setParameter("id", id);
