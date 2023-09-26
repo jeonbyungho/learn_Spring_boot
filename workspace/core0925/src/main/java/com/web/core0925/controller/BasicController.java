@@ -11,14 +11,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.web.core0925.dto.User;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @Controller()
 @RequestMapping("/basic")
 public class BasicController {
 	@GetMapping("/object")
-	public String basicObject(HttpSession session) {
+	public String basicObject(
+			Model model,
+			HttpSession session,
+			HttpServletRequest req,
+			HttpServletResponse resp) {
 		session.setAttribute("sessionData", "세션 값");
+		model.addAttribute("request", req);
+		model.addAttribute("response", resp);
+		model.addAttribute("servletContext", req.getServletContext());
 		return "basic/object";
 	}
 	

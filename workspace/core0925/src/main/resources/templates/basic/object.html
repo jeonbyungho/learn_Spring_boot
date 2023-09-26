@@ -3,12 +3,22 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Insert title here</title>
+	<title>기본 객체</title>
 </head>
 <body>
 	<ul>
-		<li th:text="${#request}"></li>
-		<li th:text="${#response}"></li>
+		<li>request = <span th:text="${request}"></span></li>
+		<li>response = <span th:text="${response}"></span></li>
+		<li>session = <span th:text="${session}"></span></li>
+		<li>servletContext = <span th:text="${servletContext}"></span></li>
+		<li>locale = <span th:text="${#locale}"></span></li>
+	</ul>
+	
+	<h3>편의 객체</h3>
+	<ul>
+		<li>Request Parameter = <span th:text="${param.paramData}"></span></li>
+		<li>session Attribute = <span th:text="${session.sessionData}"></span></li>
+		<li>String bean = <span th:text="${@helloBean.hello('Spring boot')}"></li>
 	</ul>
 </body>
 </html>
