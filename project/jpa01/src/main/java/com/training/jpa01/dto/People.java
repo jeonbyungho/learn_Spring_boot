@@ -3,6 +3,7 @@ package com.training.jpa01.dto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -10,7 +11,7 @@ import jakarta.persistence.Table;
 @Table(name="person")
 public class People {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long idx;
 	
 	@Column(nullable = false, unique= true)

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>회원가입</title>
+</head>
+<body>
+	<main>
+	<form method="post" th:action action="/join">
+		<div>
+			<label for="userid">아이디 : </label>
+			<input type="text" name="id" id="userid"/>
+		</div>
+
+		<div>
+			<label for="userpwd">비밀번호 : </label>
+			<input type="password" name="password" id="userpwd"/>
+		</div>
+
+		<div>
+			<label for="name">이름 : </label>
+			<input type="text" name="name" id="name"/>
+		</div>
+
+		<div>
+			<label for="birthday">생일 : </label>
+			<input type="date" name="birthday" id="birthday"/>
+		</div>
+		
+		<div>
+			<label for="gender">성별 : </label>
+			<select name="gender" id="gender">
+				<option>--성별--</option>
+				<option value="m">남자</option>
+				<option value="f">여자</option>
+				<option value="o">선택안함</option>
+			</select>
+		</div>
+
+		<div>
+			<label for="phone">전화번호 : </label>
+			<input type="text" name="phone" id="phone"/>
+		</div>
+
+		<div>
+			<label for="email">이메일 : </label>
+			<input type="text" name="email" id="email"/>
+		</div>
+
+		<div>
+			<div>지도</div>
+			<input type="text" name="postcode" placeholder="우편번호"><br>
+			<input type="text" name="address" placeholder="주소">
+		</div>
+
+		<div>
+			<button type="submit">회원가입</button>
+		</div>
+	</form>
+	</main>
+</body>
+</html>
