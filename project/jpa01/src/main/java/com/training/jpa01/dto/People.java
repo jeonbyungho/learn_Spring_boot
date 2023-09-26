@@ -5,9 +5,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Table;
 
-@Entity
+@Entity(name="person")
 @Table(name="person")
 public class People {
 	@Id
@@ -29,6 +30,23 @@ public class People {
 	private String email;
 	private String postcode;
 	private String address;
+	
+	public People(Long idx, String id, String password, String name, String birthday, String gender, String phone,
+			String email, String postcode, String address) {
+		super();
+		this.idx = idx;
+		this.id = id;
+		this.password = password;
+		this.name = name;
+		this.birthday = birthday;
+		this.gender = gender;
+		this.phone = phone;
+		this.email = email;
+		this.postcode = postcode;
+		this.address = address;
+	}
+	
+	public People() {super();}
 	
 	public Long getIdx() {
 		return idx;

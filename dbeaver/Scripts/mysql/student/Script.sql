@@ -32,8 +32,7 @@ insert into person values(
 ;
 
 -- 로그인
-select * from person p
-where p.id = 'tester01' and p.password = 't1234'
+select * from person p where p.id = 'tester01' and p.password = 't1234'
 ;
 
 -- 이메일로 아이디 찾기
