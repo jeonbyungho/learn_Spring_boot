@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.web.item.domain.web.dto.Item;
 import com.web.item.domain.web.repository.ItemRepository;
@@ -81,10 +82,11 @@ public class BasicItemController {
 	//public String saveItem(@ModelAttribute("item") Item itemData) {
 	//public String saveItem(@ModelAttribute Item itemData, Model model) {
 	//public String saveItem(Item itemData) {
-	public String saveItem(@ModelAttribute Item itemData) {
-		//System.out.println("┌─itemData save 전 : " + model.getAttribute("item").toString());
+	public String saveItem(@ModelAttribute Item itemData, RedirectAttributes redirect) {
+		//System.out.println("┌─itemData save 전 : " + model.getAttribute("item").toString()); id = null
 		itemRepository.save(itemData);
-		//System.out.println("└─itemData save 후 : " + model.getAttribute("item").toString());
+		//System.out.println("└─itemData save 후 : " + model.getAttribute("item").toString()); id = {*}
+		redirect.addAttribute("status", true);
 		return "redirect:/basic/items/" + itemData.getId();
 	}
 	
