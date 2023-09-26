@@ -23,7 +23,7 @@ import jakarta.persistence.Query;
 public class PeopleController {
 	
 	private final PeopleRepository peopleRepository;
-	private final EntityManager em;
+	private final EntityManager em; 
 	
 	@Autowired
 	public PeopleController(PeopleRepository peopleRepository, EntityManager em) {
@@ -36,12 +36,19 @@ public class PeopleController {
 		return "login";
 	}
 	
-	@PostMapping("/login")
-	public @ResponseBody People login(@RequestParam String id, @RequestParam String password) {
+//	＃EntityManager
+//	@PostMapping("/login")
+	public @ResponseBody People login_em(@RequestParam String id, @RequestParam String password) {
 		Query query = em.createQuery("select p from person p where p.id = :id and p.password = :password", People.class);
 		query.setParameter("id", id);
 		query.setParameter("password", password);
 		People people = (People) query.getSingleResult();
+		return people;
+	}
+	
+	@PostMapping("/login")
+	public @ResponseBody People login(@RequestParam String id, @RequestParam String password) {
+		People people = peopleRepository.login(id, password);
 		return people;
 	}
 	
