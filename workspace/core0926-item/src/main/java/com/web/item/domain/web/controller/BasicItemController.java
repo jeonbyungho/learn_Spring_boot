@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.web.item.domain.web.dto.Item;
@@ -39,12 +41,12 @@ public class BasicItemController {
 	/** 초기화 메서드 : 서버가 실행되는 시점에 호출되는 메서드이다.*/
 	@PostConstruct
 	public void init() {
-		itemRepository.save(new Item("TestA", 10000, 10));
-		itemRepository.save(new Item("TestA", 20000, 15));
-		itemRepository.save(new Item("TestB", 30000, 20));
-		itemRepository.save(new Item("TestC", 40000, 25));
-		itemRepository.save(new Item("TestD", 50000, 30));
-		itemRepository.save(new Item("TestF", 60000, 35));
+		itemRepository.save(new Item("사과", 10000, 10));
+		itemRepository.save(new Item("바나나", 20000, 15));
+		itemRepository.save(new Item("복숭아", 30000, 20));
+		itemRepository.save(new Item("키위", 40000, 25));
+		itemRepository.save(new Item("참외", 50000, 30));
+		itemRepository.save(new Item("수박", 60000, 35));
 		System.out.println("Call BasicItemController.Init() ");
 	}
 	
@@ -54,4 +56,25 @@ public class BasicItemController {
 		System.out.println("Call BasicItemController.destory()");
 	}
 	
+	@GetMapping("/{itemId}")
+	public String getItem(
+			@PathVariable("itemId") Long itemId,
+			Model model) {
+		Item item = itemRepository.findById(itemId);
+		model.addAttribute("item", item);
+		System.out.println(item.toString());
+		return "basic/item";
+	}
+	
+	@GetMapping("/add")
+	public String getItemAddForm() {
+		return "basic/addForm";
+	}
+	
+	@PostMapping("/add")
+	public String saveItem(Item item) {
+		System.out.println(item.toString());
+		itemRepository.save(item);
+		return "redirect:/basic/items";
+	}
 }

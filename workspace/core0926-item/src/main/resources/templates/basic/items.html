@@ -12,10 +12,9 @@
 		<div class="row">
 			<div class="col">
 				<!--/* 상품 등록 */-->
-				<button class="btn btn-primary float-end" 
-				onclick="location.href='addForm.html'" 
-				th:onclick="|location.href='@{/basic/items/add}'|" 
-				type="button">
+				<button type="button" class="btn btn-primary float-end" 
+					onclick="location.href='addForm.html'" 
+					th:onclick="|location.href='@{/basic/items/add}'|" >
 					상품 등록
 				</button>
 			</div>
@@ -34,8 +33,14 @@
 				<tbody>
 					<!--/* Item Store에 저장된 Item 정보를 표시함. */-->
 					<tr th:each="item : ${itemsList}">
-						<td><a th:text="${itemStat.count}" href="item.html">1</a></td>
-						<td><a th:text="${item.itemName}" href="item.html">테스트 상품1</a></td>
+						<td>
+							<a th:text="${itemStat.count}" 
+							th:href="|/basic/items/${item.id}|">1</a>
+						</td>
+						<td>
+							<a th:text="${item.itemName}" 
+							th:href="|/basic/items/${item.id}|">테스트 상품1</a>
+						</td>
 						<td th:text="${item.price}">10000</td>
 						<td th:text="${item.quantity}">10</td>
 					</tr>
