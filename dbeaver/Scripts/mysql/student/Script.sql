@@ -39,3 +39,7 @@ where p.id = 'tester01' and p.password = 't1234'
 -- 이메일로 아이디 찾기
 select p.id from person p where p.email = 'user@email.com'
 ;
+
+-- id 조회
+select * from person p where p.idx = 1
+;
