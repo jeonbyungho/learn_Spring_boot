@@ -2,7 +2,7 @@
 
 -- 회원 테이블 생성
 create table person (
-		idx 			int(11)			primary key auto_increment
+		idx 			int(11)			not null auto_increment primary key
 	,	id 				varchar(45)		not null unique
 	,	password 		varchar(300)	not null
 	,	name 			varchar(12)		not null
