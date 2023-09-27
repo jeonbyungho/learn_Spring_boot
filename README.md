@@ -22,6 +22,7 @@
 
 # Chapter 6 [9월 27일]
 1. [Form](md/day06/01.form.md)
+1. [열거형](md/day06/02.enumeration.md)
 
 # 🌐Spring
 - [공식 홈페이지](https://spring.io/)
