@@ -1,5 +1,9 @@
 package com.web.item.domain.web.dto;
 
+import java.util.List;
+
+import com.web.item.domain.web.dto.enums.ItemType;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -10,6 +14,11 @@ public class Item {
 	private String itemName;
 	private Integer price;
 	private Integer quantity;
+	
+	private Boolean open;			// 판매 여부
+	private List<String> regions;	// 등록 지역
+	private ItemType itemType;		// 상품 종류
+	private String deliverCode;		// 배송 방식
 	
 	public Item(Long id, String itemName, Integer price, Integer quantity) {
 		super();
@@ -27,6 +36,6 @@ public class Item {
 	}
 	
 	public Item() {
-		
+		super();
 	}
 }
