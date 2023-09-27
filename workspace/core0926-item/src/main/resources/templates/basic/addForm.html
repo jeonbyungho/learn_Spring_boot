@@ -15,20 +15,42 @@
 			<h2>상품 등록 폼</h2>
 		</div>
 		<h4 class="mb-3">상품 입력</h4>
-		<form action="items.html" th:action method="post">
+		<form action="items.html" th:action method="post" th:object="${item}">
 			<div>
-				<label for="itemName">상품명</label> 
-				<input type="text" id="itemName" name="itemName" class="form-control" placeholder="이름을 입력하세요">
+				<label for="name">상품명</label> 
+				<input type="text" th:field="*{itemName}" id="name" name="name" class="form-control" placeholder="이름을 입력하세요">
 			</div>
 			<div>
 				<label for="price">가격</label> 
-				<input type="text" id="price" name="price" class="form-control" placeholder="가격을 입력하세요">
+				<input type="text" th:field="*{price}" id="price" name="price" class="form-control" placeholder="가격을 입력하세요">
 			</div>
 			<div>
 				<label for="quantity">수량</label> 
-				<input type="text" id="quantity" name="quantity" class="form-control" placeholder="수량을 입력하세요">
+				<input type="text" th:field="*{quantity}" id="quantity" name="quantity" class="form-control" placeholder="수량을 입력하세요">
 			</div>
+			
 			<hr class="my-4">
+         <div>
+				<!--/* 
+					checkbox 활성화 후, 전송 시 open의 값은 'on'이 된다., 비활성화 시 전송 메시지에 open이 포함되지 않는다.
+					'on'이라는 값은 boolean 타입이 아니지만, 스프링 컨버터에서 on이라는 값을 true로 변환해준다.
+					
+					hidden _opne의 'on'만 전송될 경우, false로 처리된다.
+					언더바(_) 필드만 전송될 경우 checkbox가 체크 해제되었다고 인식할 수 있다.
+				*/-->
+				<div>판매 여부</div>
+				<!--
+            <input type="checkbox" id="open" name="open" class="form-check-input">
+            <input type="hidden" name="_open" value="on"/>
+            <label for="open" class="form-check-label">판매 오픈</label>
+            -->
+            <div class="form-check">
+					<input type="checkbox" th:field="*{open}" id="open" name="open" class="form-check-input">
+					<label for="open" class="form-check-label">판매 오픈</label>
+				</div>
+         </div>
+			<hr class="my-4">
+			
 			<div class="row">
 				<div class="col">
 					<button class="w-100 btn btn-primary btn-lg" type="submit">

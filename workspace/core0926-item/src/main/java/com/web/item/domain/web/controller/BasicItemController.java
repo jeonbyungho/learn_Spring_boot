@@ -64,13 +64,14 @@ public class BasicItemController {
 			Model model) {
 		Item item = itemRepository.findById(itemId);
 		model.addAttribute("item", item);
-		System.out.println(item.toString());
+		System.out.println("● get : "+item.toString());
 		return "basic/item";
 	}
 	
 	/**상품 추가 페이지 이동*/
 	@GetMapping("/add")
-	public String getItemAddForm() {
+	public String getItemAddForm(Model model) {
+		model.addAttribute("item", new Item());
 		return "basic/addForm";
 	}
 	
@@ -87,6 +88,7 @@ public class BasicItemController {
 		itemRepository.save(itemData);
 		//System.out.println("└─itemData save 후 : " + model.getAttribute("item").toString()); id = {*}
 		redirect.addAttribute("status", true);
+		System.out.println("● save : " + itemData.toString());
 		return "redirect:/basic/items/" + itemData.getId();
 	}
 	
@@ -97,7 +99,7 @@ public class BasicItemController {
 			Model model) {
 		Item item = itemRepository.findById(itemId);
 		model.addAttribute("item", item);
-		System.out.println(item.toString());
+		System.out.println("● getEdit : "+item.toString());
 		return "basic/editForm";
 	}
 	
