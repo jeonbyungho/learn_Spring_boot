@@ -20,6 +20,9 @@
 1. [기본 객체](md/day04/01.object.md)
 1. [Thymeleaf](md/day04/02.thymeleaf.md)
 
+# Chapter 6 [9월 27일]
+1. [Form](md/day06/01.form.md)
+
 # 🌐Spring
 - [공식 홈페이지](https://spring.io/)
 - [문서](https://docs.spring.io/spring-boot/docs/current/reference/html/)
