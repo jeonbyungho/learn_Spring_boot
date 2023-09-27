@@ -82,7 +82,7 @@ public class BasicItemController {
 		Item item = itemRepository.findById(itemId);
 		model.addAttribute("item", item);
 		System.out.println("● get : "+item.toString());
-		return "basic/item";
+		return "basic/item_obj";
 	}
 	
 	/**상품 추가 페이지 이동*/
