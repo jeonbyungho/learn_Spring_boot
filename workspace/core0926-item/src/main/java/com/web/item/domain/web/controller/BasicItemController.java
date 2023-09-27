@@ -129,16 +129,16 @@ public class BasicItemController {
 		 * new FieldError : field 단위의 error 에러로 spring에서 제공해주는 객체이다.
 		 */
 		if(!StringUtils.hasText(itemData.getItemName())) {
-			bindingResult.addError(new FieldError("itemData", "itemName", "상품 이름은 필수입니다."));
+			bindingResult.addError(new FieldError("item", "itemName", itemData.getItemName(), false, new String[] {"required.item.itemName"}, null, null));
 		}
 		if(	itemData.getPrice() == null ||
 			itemData.getPrice() < 1000 ||
 			itemData.getPrice() > 1000000) {
-			bindingResult.addError(new FieldError("itemData", "price", "1,000 ~ 1,000,000까지 허용됩니다."));
+			bindingResult.addError(new FieldError("item", "price", itemData.getPrice(), false, new String[] {"range.item.price"} , new Integer[] {1000, 10000}, null));
 		}
 		if( itemData.getQuantity() == null ||
 			itemData.getQuantity() > 10000) {
-			bindingResult.addError(new FieldError("itemData", "quantity", "수량은 최대 9999까지 허용됩니다."));
+			bindingResult.addError(new FieldError("item", "quantity", itemData.getQuantity(), false, new String[] {"max.item.quantity"} , new Integer[] {10000}, null));
 		}
 		
 		if(bindingResult.hasErrors()) {
