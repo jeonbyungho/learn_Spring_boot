@@ -7,6 +7,10 @@
 .container {
 	max-width: 560px;
 }
+.field-error {
+   border-color: #dc3545;
+   color: #dc3545;
+}
 </style>
 </head>
 <body>
@@ -16,17 +20,30 @@
 		</div>
 		<h4 class="mb-3">상품 입력</h4>
 		<form action="items.html" th:action method="post" th:object="${item}">
+			<!--/* 
+				th:errors : 해당 필드에 오류가 발생한 경우 태그를 출력한다.
+				th:errorclass="class name" : th:field에 에러 발생 시 class값을 추가한다.
+			*/-->
 			<div>
 				<label for="name">상품명</label> 
-				<input type="text" th:field="*{itemName}" id="name" name="name" class="form-control" placeholder="이름을 입력하세요">
+				<input type="text" th:field="*{itemName}" 
+				id="name" name="name" class="form-control" placeholder="이름을 입력하세요"
+				th:errorclass="field-error">
+				<div th:errors="*{itemName}" class="field-error">상품명 오류</div>
 			</div>
 			<div>
 				<label for="price">가격</label> 
-				<input type="text" th:field="*{price}" id="price" name="price" class="form-control" placeholder="가격을 입력하세요">
+				<input type="text" th:field="*{price}" 
+				id="price" name="price" class="form-control" placeholder="가격을 입력하세요" 
+				th:errorclass="field-error">
+				<div th:errors="*{price}" class="field-error">가격 오류</div>
 			</div>
 			<div>
 				<label for="quantity">수량</label> 
-				<input type="text" th:field="*{quantity}" id="quantity" name="quantity" class="form-control" placeholder="수량을 입력하세요">
+				<input type="text" th:field="*{quantity}" 
+				id="quantity" name="quantity" class="form-control" placeholder="수량을 입력하세요" 
+				th:errorclass="field-error">
+				<div th:errors="*{quantity}" class="field-error">수량 오류</div>
 			</div>
 			
 			<hr class="my-4">

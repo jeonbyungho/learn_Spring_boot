@@ -7,6 +7,9 @@ import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -114,15 +117,39 @@ public class BasicItemController {
 	 * model에 저장되는 name은 클래스명 첫 글자만 소문자로 등록
 	 * <code>Item => itme</code>*/
 	@PostMapping("/add")
-	//public String saveItem(@ModelAttribute("item") Item itemData) {
-	//public String saveItem(@ModelAttribute Item itemData, Model model) {
-	//public String saveItem(Item itemData) {
-	public String saveItem(@ModelAttribute Item itemData, RedirectAttributes redirect) {
+	//public String saveItem(@ModelAttribute("item") Item itemData) 
+	//public String saveItem(@ModelAttribute Item itemData, Model model) 
+	//public String saveItem(Item itemData) 
+	//public String saveItem(@ModelAttribute Item itemData, RedirectAttributes redirect) 
+	public String saveItem(@ModelAttribute Item itemData, BindingResult bindingResult, RedirectAttributes redirect) 
+	{
+		System.out.println("● save : " + itemData.toString());
+		/*
+		 * StringUtils.hasText() 값이 있을 경우에 true 반환, 공백이나 null이 들어올 경우에는 false가 반환된다.
+		 * new FieldError : field 단위의 error 에러로 spring에서 제공해주는 객체이다.
+		 */
+		if(!StringUtils.hasText(itemData.getItemName())) {
+			bindingResult.addError(new FieldError("itemData", "itemName", "상품 이름은 필수입니다."));
+		}
+		if(	itemData.getPrice() == null ||
+			itemData.getPrice() < 1000 ||
+			itemData.getPrice() > 1000000) {
+			bindingResult.addError(new FieldError("itemData", "price", "1,000 ~ 1,000,000까지 허용됩니다."));
+		}
+		if( itemData.getQuantity() == null ||
+			itemData.getQuantity() > 10000) {
+			bindingResult.addError(new FieldError("itemData", "quantity", "수량은 최대 9999까지 허용됩니다."));
+		}
+		
+		if(bindingResult.hasErrors()) {
+			System.err.println("● Error save : " + bindingResult);
+			return "basic/addForm";
+		}
+		
 		//System.out.println("┌─itemData save 전 : " + model.getAttribute("item").toString()); id = null
 		itemRepository.save(itemData);
 		//System.out.println("└─itemData save 후 : " + model.getAttribute("item").toString()); id = {*}
 		redirect.addAttribute("status", true);
-		System.out.println("● save : " + itemData.toString());
 		return "redirect:/basic/items/" + itemData.getId();
 	}
 	
