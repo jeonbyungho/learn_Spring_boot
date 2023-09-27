@@ -1,6 +1,8 @@
 package com.web.item.domain.web.controller;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,13 +35,6 @@ public class BasicItemController {
 //		this.itemRepository = itemRepository;
 //	}
 	
-	@GetMapping
-	public String items(Model model) {
-		List<Item> itemsList = itemRepository.findAll();
-		model.addAttribute("itemsList", itemsList);
-		return "basic/items";
-	}
-	
 	/** 초기화 메서드 : 서버가 실행되는 시점에 호출되는 메서드이다.*/
 	@PostConstruct
 	public void init() {
@@ -56,6 +51,28 @@ public class BasicItemController {
 	@PreDestroy
 	public void destory() {
 		System.out.println("Call BasicItemController.destory()");
+	}
+	
+	/**
+	 * @ModelAttribute Controller를 호출할 때 (어떤 메서드가 호출되는 지 간에)
+	 * model에 자동으로 내용이 담기도록 보장 된다.
+	 * <code>model.addAttribute("key name", object)</code>
+	 */
+	@ModelAttribute("regions")
+	public Map<String, String> regions(){
+		//HashMap(순서가 보장되지 않음) LinkedHashMap(순서가 보장됨)
+		Map<String, String> regions = new LinkedHashMap<>();
+		regions.put("SEOUL", "서울");
+		regions.put("BUSAN", "부산");
+		regions.put("JEJU", "제주");
+		return regions;
+	}
+	
+	@GetMapping
+	public String items(Model model) {
+		List<Item> itemsList = itemRepository.findAll();
+		model.addAttribute("itemsList", itemsList);
+		return "basic/items";
 	}
 	
 	@GetMapping("/{itemId}")
@@ -108,6 +125,7 @@ public class BasicItemController {
 	public String updatItem(
 			@PathVariable("itemId") Long itemId,
 			@ModelAttribute Item itemData) {
+		System.out.println("● update : "+itemData.toString());
 		itemRepository.update(itemId, itemData);
 		return "redirect:/basic/items/{itemId}";
 	}

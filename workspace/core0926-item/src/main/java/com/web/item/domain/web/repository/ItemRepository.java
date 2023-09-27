@@ -39,6 +39,7 @@ public class ItemRepository {
 		findItem.setPrice(updatParam.getPrice());
 		findItem.setQuantity(updatParam.getQuantity());
 		findItem.setOpen(updatParam.getOpen());
+		findItem.setRegions(updatParam.getRegions());
 	}
 	
 	// 저장소 데이터 지움
