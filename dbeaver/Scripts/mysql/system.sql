@@ -21,3 +21,11 @@ grant all privileges on student.* to student@localhost
 -- 변경된 내용을 메모리에 반영(권한 적용)
 flush privileges
 ;
+
+-- learn_jpa Database 생성
+create database learn_jpa
+;
+
+-- student User에게 learn_jpa Database의 모든 권한 부여
+grant all privileges on learn_jpa.* to student@localhost
+;

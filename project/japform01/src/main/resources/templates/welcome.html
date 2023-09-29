@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Welcome Page</title>
+</head>
+<body>
+   <h1>안녕 <span th:text="${data}">하세요.</span></h1>
+   <ul>
+      <li>
+         <a href="people/signin.html" th:href="@{/people/signin}">로그인</a>
+      </li>
+      <li>
+         <a href="people/signup.html" th:href="@{/people/signup}">회원가입</a>
+      </li>
+   </ul>
+</body>
+</html>

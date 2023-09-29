@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title th:text="|${people.realName}님 환영합니다.|"></title>
+</head>
+<body>
+   <table th:object="${people}">
+      <tr>
+         <th>고유 번호</th>
+         <td th:text="*{id}"></td>
+      </tr>
+      <tr>
+         <th>아이디</th>
+         <td th:text="*{userName}"></td>
+      </tr>
+      <tr>
+         <th>이름</th>
+         <td th:text="*{realName}"></td>
+      </tr>
+      <tr>
+         <th>나이</th>
+         <td th:text="*{age}"></td>
+      </tr>
+      <tr>
+         <th>이메일</th>
+         <td th:text="*{email}"></td>
+      </tr>
+   </table>
+   <div>
+      <button onclick="javascript:location.href='../welcome.html'" th:onclick="javascript:location.href='/'">Home</button>
+   </div>
+</body>
+</html>
