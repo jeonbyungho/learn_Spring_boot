@@ -1,17 +1,8 @@
 package com.web.mylogin.domain;
 
 // 상주만 정의
-public enum SessionConst {
-   LOGIN_MEMBER("loginMember");
+public class SessionConst {
 
-   private final String str;
+   public static final String LOGIN_MEMBER = "loginMember";
 
-   public String getStr() {
-      return str;
-   }
-   
-   SessionConst(String str){
-      this.str = str;
-   }
-   
 }

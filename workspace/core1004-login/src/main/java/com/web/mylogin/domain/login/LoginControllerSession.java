@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.web.mylogin.domain.SessionConst;
@@ -28,14 +29,36 @@ public class LoginControllerSession {
       System.out.println("Session 로그인");
    }
 
-   @GetMapping("/")
+   /** 서블릿 HttpSession */
+   //@GetMapping("/")
    public String homeLogin(HttpServletRequest req, Model model){
       HttpSession session = req.getSession(false);
       if(session == null) {
          System.err.println("Null Check session : " + session);
          return "home";
       }
-      Member loginMember = (Member) session.getAttribute(SessionConst.LOGIN_MEMBER.getStr());
+      Member loginMember = (Member) session.getAttribute(SessionConst.LOGIN_MEMBER);
+      if(loginMember == null) {
+         System.err.println("Null Check loginMember : " + loginMember);
+         return "home";
+      }
+
+      Long memberId = loginMember.getId();
+      if(memberId != memberRepository.findById(memberId).getId()){
+         System.err.println("MemberId : Mismatch");
+         return "home";
+      }
+
+      // 로그인 성공 loginHome을 return.
+      model.addAttribute("member", loginMember);
+      return "loginHome";
+   }
+
+   /** SessionAttribute 어노테이션 */
+   @GetMapping("/")
+   public String homeLogin(
+      @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember, Model model){
+      
       if(loginMember == null) {
          System.err.println("Null Check loginMember : " + loginMember);
          return "home";
@@ -72,7 +95,7 @@ public class LoginControllerSession {
       }
 
       HttpSession session = req.getSession();
-      session.setAttribute(SessionConst.LOGIN_MEMBER.getStr(), loginMember);
+      session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
       
       redirect.addAttribute("message", "로그인 성공");
       return "redirect:/";

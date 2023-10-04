@@ -26,3 +26,7 @@ http://localhost:8080/;jsessionid=F59911518B921DF62D09F0DF8F83F872
 - `request.getSession(boolean create)``
    1. `true` (default) : 세션이 있으면 기존 세션을 반환, 아니라면 새로운 새션을 생성한 후 반환한다.
    1. `false` : 세션이 있으면 기존 세션을 반환, 아니라면 새 세션을 생성하지 않고 null로 반환한다.
+
+- `server.servlet.session.timeout=30`
+   1. 세션의 유지 시간을 수정할 수 있다. (분단위) `application.properties`에 기입한다.
+   1. default 30분
