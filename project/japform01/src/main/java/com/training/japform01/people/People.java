@@ -21,7 +21,7 @@ public class People{
 
    @Column(nullable = false)
    private String realName;
-
+   
    private Integer age;
 
    private String email;
