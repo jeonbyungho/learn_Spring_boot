@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<link th:href="@{/css/bootstrap.min.css}"
-	href="css/bootstrap.min.css" rel="stylesheet">
-<title>Home Page</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link th:href="@{/css/bootstrap.min.css}"
+		href="css/bootstrap.min.css" rel="stylesheet">
+	<title>Home Page</title>
 </head>
 <body>
 	<div class="container" style="max-width: 600px">
@@ -21,7 +22,7 @@
 			<div class="col">
 				<button class="w-100 btn btn-dark btn-lg"
 					onclick="location.href='items.html'"
-					th:onclick="|location.href='@{/members/login}'|" type="button">
+					th:onclick="|location.href='@{/login}'|" type="button">
 					로그인
 				</button>
 			</div>
@@ -31,9 +32,3 @@
 	<!-- /container -->
 </body>
 </html>
-
-
-
-
-
-

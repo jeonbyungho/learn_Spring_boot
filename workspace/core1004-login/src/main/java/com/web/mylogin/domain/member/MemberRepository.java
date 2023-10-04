@@ -15,6 +15,7 @@ public class MemberRepository {
    public Member save(Member member){
       member.setId(++sequence);
       store.put(member.getId(), member);
+      System.out.println("New "+ member.toString());
       return member;
    }
 
@@ -26,10 +27,12 @@ public class MemberRepository {
       return new ArrayList<Member>(store.values());
    }
 
-   public Member findByLoginId(String loginId){
+   public Member findByLoginId(String loginId, String password){
       List<Member> all = findAll();
       for(Member member : all) {
-         if(member.getLoginId().equals(loginId)){
+         if(member.getLoginId().equals(loginId)
+         && member.getPassword().equals(password)){
+            System.out.println("Login " + member.toString());
             return member;
          }
       }
