@@ -10,6 +10,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.web.mylogin.domain.member.Member;
 
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 
@@ -42,5 +43,24 @@ public class LoginController {
       resp.addCookie(idCookie);
       redirect.addAttribute("message", "로그인 성공");
       return "redirect:/";
+   }
+
+   @PostMapping("/logout")
+   public String logoutMember(HttpServletRequest req, HttpServletResponse resp){
+      Cookie[] cs = req.getCookies();
+      for(Cookie c :cs){
+         if(c.getName().equals("memberId")){
+            System.out.println("Cookie memberId : " + c.getValue());
+            expireCookie(resp, "memberId");
+            break;
+         }
+      }
+      return "redirect:/";
+   }
+
+   private void expireCookie(HttpServletResponse resp, String cookieName){
+      Cookie cookie = new Cookie(cookieName, null);
+      cookie.setMaxAge(0);
+      resp.addCookie(cookie);
    }
 }
