@@ -129,7 +129,7 @@ public class BasicItemController {
 		 * new FieldError : field 단위의 error 에러로 spring에서 제공해주는 객체이다.
 		 */
 		if(!StringUtils.hasText(itemData.getItemName())) {
-			bindingResult.addError(new FieldError("item", "itemName", itemData.getItemName(), false, new String[] {"required.item.itemName"}, null, null));
+			bindingResult.addError(new FieldError("item", "itemName", itemData.getItemName(), false, new String[] {"required.item.itemName", "required.default"}, null, null));
 		}
 		if(	itemData.getPrice() == null ||
 			itemData.getPrice() < 1000 ||
