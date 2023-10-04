@@ -9,6 +9,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.web.mylogin.domain.SessionConst;
 import com.web.mylogin.domain.member.Member;
+import com.web.mylogin.domain.member.MemberRepository;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 public class LoginControllerSession {
 
    private final LoginService loginService;
+   private final MemberRepository memberRepository;
    
    @PostConstruct
    public void init(){
@@ -28,13 +30,23 @@ public class LoginControllerSession {
 
    @GetMapping("/")
    public String homeLogin(HttpServletRequest req, Model model){
-      HttpSession session = req.getSession();
+      HttpSession session = req.getSession(false);
+      if(session == null) {
+         System.err.println("Null Check session : " + session);
+         return "home";
+      }
       Member loginMember = (Member) session.getAttribute(SessionConst.LOGIN_MEMBER.getStr());
-
       if(loginMember == null) {
          System.err.println("Null Check loginMember : " + loginMember);
          return "home";
       }
+
+      Long memberId = loginMember.getId();
+      if(memberId != memberRepository.findById(memberId).getId()){
+         System.err.println("MemberId : Mismatch");
+         return "home";
+      }
+
       // 로그인 성공 loginHome을 return.
       model.addAttribute("member", loginMember);
       return "loginHome";
