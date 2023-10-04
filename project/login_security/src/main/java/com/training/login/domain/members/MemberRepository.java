@@ -27,11 +27,10 @@ public class MemberRepository {
       return new ArrayList<Member>(store.values());
    }
 
-   public Member findByLoginId(String loginId, String password){
+   public Member findByLoginId(String loginId){
       List<Member> all = findAll();
       for(Member member : all) {
-         if(member.getLoginId().equals(loginId)
-         && member.getPassword().equals(password)){
+         if(member.getLoginId().equals(loginId)){
             System.out.println("Login " + member.toString());
             return member;
          }

@@ -21,18 +21,18 @@ public class TestDataInit {
       member1.setLoginId("tester");
       member1.setPassword("t1234");
       member1.setName("테스터");
-      memberService.add(member1);
+      memberService.join(member1);
 
       Member member2 = new Member();
       member2.setLoginId("user01");
       member2.setPassword("u1234");
       member2.setName("유저임");
-      memberService.add(member2);
+      memberService.join(member2);
 
       Member member3 = new Member();
       member3.setLoginId("user02");
       member3.setPassword("u1234");
       member3.setName("유저야");
-      memberService.add(member3);
+      memberService.join(member3);
    }
 }
