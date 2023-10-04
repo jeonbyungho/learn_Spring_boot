@@ -7,18 +7,38 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.web.mylogin.domain.SessionConst;
 import com.web.mylogin.domain.member.Member;
 
-import jakarta.servlet.http.Cookie;
+import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-public class LoginController {
+public class LoginControllerSession {
 
    private final LoginService loginService;
+   
+   @PostConstruct
+   public void init(){
+      System.out.println("Session 로그인");
+   }
+
+   @GetMapping("/")
+   public String homeLogin(HttpServletRequest req, Model model){
+      HttpSession session = req.getSession();
+      Member loginMember = (Member) session.getAttribute(SessionConst.LOGIN_MEMBER.getStr());
+
+      if(loginMember == null) {
+         System.err.println("Null Check loginMember : " + loginMember);
+         return "home";
+      }
+      // 로그인 성공 loginHome을 return.
+      model.addAttribute("member", loginMember);
+      return "loginHome";
+   }
    
    @GetMapping("/login")
    public String loginPage(@ModelAttribute LoginForm loginForm){
@@ -29,7 +49,7 @@ public class LoginController {
    public String loginMember(
          @ModelAttribute LoginForm loginForm, 
          Model model, RedirectAttributes redirect, 
-         HttpServletResponse resp){
+         HttpServletRequest req){
       String loginId = loginForm.getLoginId();
       String password = loginForm.getPassword();
       
@@ -39,28 +59,19 @@ public class LoginController {
          return "login";
       }
 
-      Cookie idCookie = new Cookie("memberId", String.valueOf(loginMember.getId()));
-      resp.addCookie(idCookie);
+      HttpSession session = req.getSession();
+      session.setAttribute(SessionConst.LOGIN_MEMBER.getStr(), loginMember);
+      
       redirect.addAttribute("message", "로그인 성공");
       return "redirect:/";
    }
 
    @PostMapping("/logout")
-   public String logoutMember(HttpServletRequest req, HttpServletResponse resp){
-      Cookie[] cs = req.getCookies();
-      for(Cookie c :cs){
-         if(c.getName().equals("memberId")){
-            System.out.println("Cookie memberId : " + c.getValue());
-            expireCookie(resp, "memberId");
-            break;
-         }
+   public String logoutMember(HttpServletRequest req){
+      HttpSession session = req.getSession(false);
+      if(session != null) {
+         session.invalidate();
       }
       return "redirect:/";
-   }
-
-   private void expireCookie(HttpServletResponse resp, String cookieName){
-      Cookie cookie = new Cookie(cookieName, null);
-      cookie.setMaxAge(0);
-      resp.addCookie(cookie);
    }
 }
