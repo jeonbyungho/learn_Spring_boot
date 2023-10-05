@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -84,7 +85,8 @@ public class LoginControllerSession {
    public String loginMember(
          @ModelAttribute LoginForm loginForm, 
          Model model, RedirectAttributes redirect, 
-         HttpServletRequest req){
+         HttpServletRequest req,
+         @RequestParam(defaultValue = "/") String redirecturi){
       String loginId = loginForm.getLoginId();
       String password = loginForm.getPassword();
       
@@ -98,7 +100,7 @@ public class LoginControllerSession {
       session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
       
       redirect.addAttribute("message", "로그인 성공");
-      return "redirect:/";
+      return "redirect:" + redirecturi;
    }
 
    @PostMapping("/logout")

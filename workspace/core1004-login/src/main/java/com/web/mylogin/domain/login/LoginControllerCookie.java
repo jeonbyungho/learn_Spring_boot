@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.web.mylogin.domain.member.Member;
@@ -62,7 +63,8 @@ public class LoginControllerCookie {
    public String loginMember(
          @ModelAttribute LoginForm loginForm, 
          Model model, RedirectAttributes redirect, 
-         HttpServletResponse resp){
+         HttpServletResponse resp,
+         @RequestParam(defaultValue = "/") String redirecturi){
       String loginId = loginForm.getLoginId();
       String password = loginForm.getPassword();
       
@@ -75,7 +77,7 @@ public class LoginControllerCookie {
       Cookie idCookie = new Cookie("memberId", String.valueOf(loginMember.getId()));
       resp.addCookie(idCookie);
       redirect.addAttribute("message", "로그인 성공");
-      return "redirect:/";
+      return "redirect:" + redirecturi;
    }
 
    @PostMapping("/logout")
