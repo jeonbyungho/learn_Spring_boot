@@ -1,0 +1,2 @@
+- [Spring Guides Securing-Web](https://spring.io/guides/gs/securing-web/)
+- [점프 투 스프링부트 : 3-05 스프링 시큐리티](https://wikidocs.net/162150)
