@@ -1,0 +1,36 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title th:text="'상품 : ' + ${product}">상품</title>
+</head>
+<body>
+
+   <div th:object="${product}">
+      <h3>상품명 : <span th:text="*{name}">Item</span></h3>
+      <div>
+         <label for="price">가격</label>
+         <input type="text" id="price" th:value="*{price}" readonly>
+      </div>
+      <div>
+         <label for="quantity">수량</label>
+         <input type="text" id="quantity" th:value="*{quantity}" readonly>
+      </div>
+
+      <div>
+         <button th:onclick="|location.href='/product/edit/*{id}'|">수정</button>
+         <button th:onclick="|location.href='/product/list'|">목록으로</button>
+      </div>
+   </div>
+
+   <script th:inline="javascript">
+      const status = [[${param.status}]];
+      if(status == 'add'){
+         alert('상품이 추가 되었습니다.');
+      } else if(status == 'edit'){
+         alert('상품이 수정 되었습니다.');
+      }
+   </script>
+</body>
+</html>

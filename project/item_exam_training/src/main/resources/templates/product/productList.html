@@ -1,0 +1,27 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>상품 목록</title>
+</head>
+<body>
+   <table>
+      <tr>
+         <th>번호</th>
+         <th>상품명</th>
+         <th>가격</th>
+         <th>수량</th>
+      </tr>
+      <tr th:each="product : ${productList}">
+         <td><a th:href="|/product/${product.id}|" th:text="${product.id}">0</a></td>
+         <td><a th:href="|/product/${product.id}|" th:text="${product.name}">Item</a></td>
+         <td th:text="${product.price}">1000</td>
+         <td th:text="${product.quantity}">999</td>
+      </tr>
+   </table>
+   <div>
+      <button th:onclick="|location.href='/product/add'|">상품 추가</button>
+   </div>
+</body>
+</html>
