@@ -24,7 +24,7 @@ public class LogInterceptor implements HandlerInterceptor{
       System.out.println("┌─[preHandle] UUID : " + uuid);
       System.out.println("├─[preHandle] URI : " + uri);
       System.out.println("├─[preHandle] Handler : " + handler.toString());
-      System.out.println("└─[preHandle] "+ LOG_ID + ": " + request.getAttribute("LOG_ID"));
+      System.out.println("└─[preHandle] "+ LOG_ID + ": " + request.getAttribute(LOG_ID));
       return true;
    }
 
@@ -32,7 +32,8 @@ public class LogInterceptor implements HandlerInterceptor{
    @Override
    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
          ModelAndView modelAndView) throws Exception {
-      System.out.println("──[postHandle] : " + modelAndView);
+      System.out.println("┌─[postHandle] : " + modelAndView);
+      System.out.println("└─[postHandle] "+ LOG_ID + ": " + request.getAttribute(LOG_ID));
    }
 
    // 요청 완료 이후
@@ -52,7 +53,7 @@ public class LogInterceptor implements HandlerInterceptor{
          System.out.println("└─[afterCompletion] Exception" + ex.getMessage());
          return;
       }
-      System.out.println("└─[afterCompletion] "+ LOG_ID + ": " + request.getAttribute("LOG_ID"));
+      System.out.println("└─[afterCompletion] "+ LOG_ID + ": " + request.getAttribute(LOG_ID));
    }
    
 }

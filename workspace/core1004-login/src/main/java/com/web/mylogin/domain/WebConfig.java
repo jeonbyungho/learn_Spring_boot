@@ -9,6 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import com.web.mylogin.domain.filter.LogFilter;
 import com.web.mylogin.domain.filter.LoginCheckFilter;
 import com.web.mylogin.domain.interceptor.LogInterceptor;
+import com.web.mylogin.domain.interceptor.LoginCheckInterceptor;
 
 import jakarta.servlet.Filter;
 
@@ -25,7 +26,7 @@ public class WebConfig implements WebMvcConfigurer{
       return filterRegistrationBean;
    }
 
-   @Bean
+   //@Bean
    public FilterRegistrationBean<Filter> loginCheckFilter(){
       FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<Filter>();
       filterRegistrationBean.setFilter(new LoginCheckFilter());   // Filter 등록
@@ -40,7 +41,13 @@ public class WebConfig implements WebMvcConfigurer{
       registry.addInterceptor(new LogInterceptor())
          .order(1)
          .addPathPatterns("/**")
-         .excludePathPatterns("/css/**");
+         .excludePathPatterns("/css/**")
+      ;
+      registry.addInterceptor(new LoginCheckInterceptor())
+         .order(2)
+         .addPathPatterns("/**")
+         .excludePathPatterns("/", "/login", "member/add", "/css/**")
+      ;
    }
    
 }
