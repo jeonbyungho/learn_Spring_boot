@@ -31,6 +31,9 @@
 1. [인터셉터](md/day08/02.interceptor.md)
 1. [ORM](md/day08/03.orm.md)
 
+# Chapter 9 [10월 6일]
+1. [영속성 컨텍스트](md/day09/01.persistence_context.md)
+
 # 🌐Spring
 - [공식 홈페이지](https://spring.io/)
 - [문서](https://docs.spring.io/spring-boot/docs/current/reference/html/)
