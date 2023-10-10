@@ -1,7 +1,5 @@
 package com.simple;
 
-import com.web.jpa.domain.Member;
-
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;

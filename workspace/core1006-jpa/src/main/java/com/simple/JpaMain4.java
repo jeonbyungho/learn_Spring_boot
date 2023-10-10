@@ -5,7 +5,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 
-public class JpaMain3 {
+public class JpaMain4 {
    public static void main(String[] args) {
       EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
       EntityManager em = emf.createEntityManager();
@@ -13,19 +13,15 @@ public class JpaMain3 {
 
       try {
          tx.begin();
+         Person person1 = new Person();
+         person1.setUsername("JPA Student");
 
-         // 비영속 상태
-         Member member = new Member();
-         member.setId(100L);
-         member.setName("Tester");
+         Person person2 = new Person();
+         person2.setUsername("Spring Boot");
 
-         // 영속 상태 돌입 : EntityManager안에 있는 영속 컨텍스트에 관리가 된다.
-         System.out.println("-------befor-------");
-         em.persist(member);
-         System.out.println("-------after-------");
-         em.detach(member);
+         em.persist(person1);
+         em.persist(person2);
          tx.commit();
-         System.out.println("-------commit-------");
       } catch (Exception e) {
          e.printStackTrace();
          tx.rollback();
@@ -34,5 +30,4 @@ public class JpaMain3 {
       }
       emf.close();
    }
-   
 }
