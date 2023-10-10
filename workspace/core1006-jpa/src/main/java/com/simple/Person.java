@@ -11,11 +11,13 @@ import lombok.Setter;
 
 @Entity
 @Getter @Setter
+@SequenceGenerator(name = "PERSON_SEQ_GENERATOR", 
+                  sequenceName = "PERSON_SEQ", 
+                  initialValue = 1, allocationSize = 1)
 public class Person {
    
    @Id
-   @GeneratedValue(strategy = GenerationType.SEQUENCE)
-   @SequenceGenerator(name = "PersonSeq", allocationSize = 1)
+   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PERSON_SEQ_GENERATOR")
    private Long id;
 
    @Column(name="name", nullable = false, length = 15)
