@@ -1,4 +1,4 @@
-package com.ex.em.relation;
+package com.ex.em.dto.relation;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
