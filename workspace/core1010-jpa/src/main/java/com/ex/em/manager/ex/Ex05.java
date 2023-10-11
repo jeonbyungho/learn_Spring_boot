@@ -3,8 +3,6 @@ package com.ex.em.manager.ex;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import javax.persistence.Transient;
-
 import com.ex.em.dto.Person;
 import com.ex.em.dto.emb.Address;
 import com.ex.em.dto.emb.Period;

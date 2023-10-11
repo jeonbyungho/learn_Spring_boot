@@ -5,3 +5,8 @@ CREATE USER springweb IDENTIFIED BY springweb;
 GRANT CONNECT, resource, dba TO springweb;
 -- 계정 삭제
 DROP USER SPRINGWEB CASCADE;
+
+-- jpa 연습용 계정 생성
+CREATE USER studentuser IDENTIFIED BY 1234;
+GRANT CONNECT, resource, dba TO studentuser;
+DROP USER studentuser CASCADE;
