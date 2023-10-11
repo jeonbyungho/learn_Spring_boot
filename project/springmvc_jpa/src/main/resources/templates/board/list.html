@@ -12,11 +12,12 @@
          <th>제목</th>
          <th>작성자</th>
       </tr>
-      <tr th:each="board: ${boardList}">
-         <td th:text="${board.id}">0</td>
-         <td><a th:href="@{|/board/${board.id}|}" th:text="${board.title}">title</a></td>
-         <td th:text="${board.post.author}">author</td>
+      <tr th:each="board: ${boardList}" th:object="${board}">
+         <td th:text="*{id}">0</td>
+         <td><a th:href="@{|/board/*{id}|}" th:text="*{title}">title</a></td>
+         <td th:text="*{post.author}">author</td>
       </tr>
    </table>
+   <div th:each="${totalPage}"><span th:text="${i}"></span></div>
 </body>
 </html>
