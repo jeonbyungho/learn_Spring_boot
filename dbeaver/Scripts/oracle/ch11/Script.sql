@@ -1,0 +1,3 @@
+SELECT * FROM "MEMBER" m ;
+
+SELECT * FROM TEAM t ;

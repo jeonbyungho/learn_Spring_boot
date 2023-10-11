@@ -1,8 +1,8 @@
 package com.ex.em.manager.ex;
 
-import com.ex.em.dto.relation.Member;
-import com.ex.em.dto.relation.Team;
 import com.ex.em.manager.Manager;
+import com.ex.em.relation.Member;
+import com.ex.em.relation.Team;
 
 public class Ex01 extends Manager{
 
