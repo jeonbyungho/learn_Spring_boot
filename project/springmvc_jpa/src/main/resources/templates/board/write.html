@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>작성글</title>
+</head>
+<body>
+   <form th:action method="post" th:object="${boardForm}">
+      <div>
+         <label>
+            <span>작성글 : </span>
+            <input type="text" th:field="*{title}" required>
+         </label>
+      </div>
+
+      <div>
+         <label>
+            <span>작성자 : </span>
+            <input type="text" th:field="*{author}" required>
+         </label>
+      </div>
+
+      <div>
+         <textarea th:field="*{content}" required></textarea>
+      </div>
+      <div>
+         <input type="submit"/>
+      </div>
+   </form>
+</body>
+</html>

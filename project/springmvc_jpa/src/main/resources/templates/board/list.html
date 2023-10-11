@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>목록</title>
+</head>
+<body>
+   <table>
+      <tr>
+         <th>#</th>
+         <th>제목</th>
+         <th>작성자</th>
+      </tr>
+      <tr th:each="board: ${boardList}">
+         <td th:text="${board.id}">0</td>
+         <td><a th:href="@{|/board/${board.id}|}" th:text="${board.title}">title</a></td>
+         <td th:text="${board.post.author}">author</td>
+      </tr>
+   </table>
+</body>
+</html>
