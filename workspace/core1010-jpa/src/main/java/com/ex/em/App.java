@@ -5,7 +5,7 @@ import com.ex.em.manager.ex.*;
 
 public class App {
     public static void main(String[] args) {
-        Manager ex = new Ex04();
+        Manager ex = new Ex05();
         ex.execute();
     }
 }

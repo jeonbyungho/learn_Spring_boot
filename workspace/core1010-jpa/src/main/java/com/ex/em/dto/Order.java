@@ -11,14 +11,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
+@Table(name = "Orders")
 @Entity
 @Getter @Setter
-public class Orders {
+public class Order {
 	
 	@Id
 	@GeneratedValue
@@ -26,12 +28,12 @@ public class Orders {
 	private Long id;
 
 	@ManyToOne
-	@JoinColumn(name= "MEMBER_ID")
+	@JoinColumn(name= "PERSON_ID")
 	@Setter(AccessLevel.NONE)
 	private Person person;
 
 	public void setMember(Person person){
-      person.getOrderss().add(this);
+      person.getOrders().add(this);
       this.person = person;
    }
 
