@@ -34,9 +34,6 @@
 				"home": "C:\\Program Files\\MySQL\\MySQL Server 8.0",
 				"type": "dev",
 				"auth-model": "native"
-			},
-			"custom-properties": {
-				"SQLEditor.outputPanel.autoShow": "false"
 			}
 		}
 	},
