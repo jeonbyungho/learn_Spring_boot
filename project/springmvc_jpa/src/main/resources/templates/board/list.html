@@ -21,7 +21,7 @@
       </tr>
    </table>
    <div>
-      <span th:each="i : ${#numbers.sequence(1, totalPage)}">
+      <span th:each="i : ${#numbers.sequence(startPage, lastPage)}">
          <a th:text="${i}"
          th:href="@{/board/list/{pageNumber}(pageNumber=${i})}"
          th:if="${#strings.isEmpty(param.search)}">0</a>

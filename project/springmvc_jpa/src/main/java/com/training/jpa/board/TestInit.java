@@ -15,7 +15,7 @@ public class TestInit {
    
    @PostConstruct
    public void init(){
-      for(int i=0; i <55; i++){
+      for(int i=0; i <502; i++){
          BoardForm b = new BoardForm();
          b.setTitle("가상 게시판" + i);
          b.setAuthor("un");

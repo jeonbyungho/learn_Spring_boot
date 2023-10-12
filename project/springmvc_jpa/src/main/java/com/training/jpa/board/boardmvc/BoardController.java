@@ -25,6 +25,7 @@ public class BoardController {
    
    private final BoardService boardService;
    protected final Logger logger = LoggerFactory.getLogger(getClass());
+   private static final int PAGESIZE = 10;
    
    // 페이지
    @GetMapping("/board/{boardId}")
@@ -54,29 +55,32 @@ public class BoardController {
    @GetMapping("/board/list/{pageNumber}")
    public String pagingBoardList(
          @PathVariable Integer pageNumber, 
-         @RequestParam(required=false) String search,
+         @RequestParam(required = false) String search,
          Model model){
-      
-      Page<Board> boardPage;
-      List<Board> boardToList;
-      int totalPage;
       logger.info("검색한 단어━━" + search);
       
-      boardPage = StringUtils.hasText(search) ? 
+      Page<Board> boardPage = StringUtils.hasText(search) ? 
          boardService.BoardListPage(pageNumber - 1, search): 
          boardService.BoardListPage(pageNumber - 1);
+      List<Board> boardToList = boardPage.toList();
       
-      totalPage = boardPage.getTotalPages();
-      boardToList = boardPage.toList();
-      
+      int startPage = pageNumber > PAGESIZE? (pageNumber-1)/PAGESIZE * PAGESIZE : 1;
+      int lastPage = startPage + PAGESIZE;
+      int totalPage = boardPage.getTotalPages();
+      lastPage = lastPage > totalPage ? totalPage : lastPage;
+
       model.addAttribute("boardList", boardToList);
-      model.addAttribute("totalPage", totalPage);
+      model.addAttribute("startPage", startPage);
+      model.addAttribute("lastPage", lastPage);
+      logger.info("startPage"+ startPage);
+      logger.info("lastPage"+ lastPage);
+      logger.info("totalPage"+ totalPage);
       return "board/list";
    }
 
    @GetMapping("/board/list")
    public String pagingBoardList(
-         @RequestParam(required=false) String search,
+         @RequestParam(required = false) String search,
          Model model){
       return pagingBoardList(1, search, model);
    }

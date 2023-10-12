@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,17 +41,16 @@ public class BoardService {
 
    @Transactional
    public Page<Board> BoardListPage(int pageNumber){
-      Sort sort = Sort.by("id").descending();
-      Page<Board> page = boardRepository.findAll(PageRequest.of(pageNumber, 10, sort));
+      Pageable pageable = PageRequest.of(pageNumber, 10, Sort.by("id").descending());
+      Page<Board> page = boardRepository.findAll(pageable);
       return page;
    }
 
    @Transactional
    public Page<Board> BoardListPage(int pageNumber, String title){
-      String q = "%" + title + "%";
-      System.out.println(q);
-      Sort sort = Sort.by("id").descending();
-      Page<Board> page = boardRepository.findByTitleLike(q, PageRequest.of(pageNumber, 10, sort));
+      String str = String.format("%s%s%s", "%",title,"%");
+      Pageable pageable = PageRequest.of(pageNumber, 10, Sort.by("id").descending());
+      Page<Board> page = boardRepository.findByTitleLike(str, pageable);
       return page;
    }
 }
