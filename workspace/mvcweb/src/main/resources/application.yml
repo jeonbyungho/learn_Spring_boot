@@ -1,0 +1,30 @@
+server:
+   port: 9090
+   servlet:
+      encoding:
+         charset: UTF-8
+         enabled: true
+         force: true
+
+spring:
+   thymeleaf:
+      cache: false
+   datasource:
+      driver-class-name: oracle.jdbc.driver.OracleDriver
+      url: jdbc:oracle:thin:@localhost:1521:xe
+      username: springweb
+      password: springweb
+   jpa:
+      hibernate:
+         ddl-auto: create
+      properties:
+         hibernate:
+            format_sql: true
+      open-in-view: false
+      show-sql: true
+
+logging:
+   level:
+      org:
+         hibernate:
+            sql: debug
