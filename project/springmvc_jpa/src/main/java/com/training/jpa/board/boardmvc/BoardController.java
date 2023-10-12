@@ -2,6 +2,9 @@ package com.training.jpa.board.boardmvc;
 
 import java.util.List;
 
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+import org.springframework.util.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.training.jpa.board.entity.Board;
 import com.training.jpa.board.form.BoardForm;
@@ -20,6 +24,7 @@ import lombok.RequiredArgsConstructor;
 public class BoardController {
    
    private final BoardService boardService;
+   protected final Logger logger = LoggerFactory.getLogger(getClass());
    
    // 페이지
    @GetMapping("/board/{boardId}")
@@ -47,18 +52,33 @@ public class BoardController {
 
    //목록
    @GetMapping("/board/list/{pageNumber}")
-   public String pagingBoardList(@PathVariable Integer pageNumber, Model model){
-      Page<Board> boardPage = boardService.BoardListPage(pageNumber - 1);
-      List<Board> list = boardPage.toList();
-      int totalPage = boardPage.getTotalPages();
+   public String pagingBoardList(
+         @PathVariable Integer pageNumber, 
+         @RequestParam(required=false) String search,
+         Model model){
       
-      model.addAttribute("boardList", list);
+      Page<Board> boardPage;
+      List<Board> boardToList;
+      int totalPage;
+      logger.info("검색한 단어━━" + search);
+      
+      boardPage = StringUtils.hasText(search) ? 
+         boardService.BoardListPage(pageNumber - 1, search): 
+         boardService.BoardListPage(pageNumber - 1);
+      
+      totalPage = boardPage.getTotalPages();
+      boardToList = boardPage.toList();
+      
+      model.addAttribute("boardList", boardToList);
       model.addAttribute("totalPage", totalPage);
       return "board/list";
    }
 
    @GetMapping("/board/list")
-   public String pagingBoardList(Model model){
-      return pagingBoardList(1, model);
+   public String pagingBoardList(
+         @RequestParam(required=false) String search,
+         Model model){
+      return pagingBoardList(1, search, model);
    }
+   
 }

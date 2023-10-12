@@ -40,7 +40,17 @@ public class BoardService {
 
    @Transactional
    public Page<Board> BoardListPage(int pageNumber){
-      Page<Board> page = boardRepository.findAll(PageRequest.of(pageNumber, 10));
+      Sort sort = Sort.by("id").descending();
+      Page<Board> page = boardRepository.findAll(PageRequest.of(pageNumber, 10, sort));
+      return page;
+   }
+
+   @Transactional
+   public Page<Board> BoardListPage(int pageNumber, String title){
+      String q = "%" + title + "%";
+      System.out.println(q);
+      Sort sort = Sort.by("id").descending();
+      Page<Board> page = boardRepository.findByTitleLike(q, PageRequest.of(pageNumber, 10, sort));
       return page;
    }
 }

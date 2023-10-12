@@ -17,6 +17,6 @@ public interface BoardRepository extends Repository<Board, Long>{
    Board findById(Long id);
    // select
    List<Board> findAll();
-
    Page<Board> findAll(Pageable pageable);
+   Page<Board> findByTitleLike(String title, Pageable pageable);
 }

@@ -9,15 +9,32 @@
    <table>
       <tr>
          <th>#</th>
-         <th>제목</th>
          <th>작성자</th>
+         <th>제목</th>
+         <th>작성일</th>
       </tr>
       <tr th:each="board: ${boardList}" th:object="${board}">
          <td th:text="*{id}">0</td>
          <td><a th:href="@{|/board/*{id}|}" th:text="*{title}">title</a></td>
          <td th:text="*{post.author}">author</td>
+         
       </tr>
    </table>
-   <div th:each="${totalPage}"><span th:text="${i}"></span></div>
+   <div>
+      <span th:each="i : ${#numbers.sequence(1, totalPage)}">
+         <a th:text="${i}"
+         th:href="@{/board/list/{pageNumber}(pageNumber=${i})}"
+         th:if="${#strings.isEmpty(param.search)}">0</a>
+
+         <a th:text="${i}"
+         th:href="@{/board/list/{pageNumber}(pageNumber=${i}, search=${param.search})}"
+         th:unless="${#strings.isEmpty(param.search)}">0</a>
+      </span>
+   </div>
+   
+   <form th:action="@{/board/list}">
+      <input type="text" th:name="search"/>
+      <input type="submit" value="검색">
+   </form>
 </body>
 </html>
