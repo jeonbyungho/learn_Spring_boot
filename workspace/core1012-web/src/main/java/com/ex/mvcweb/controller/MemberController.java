@@ -57,6 +57,7 @@ public class MemberController {
       log.info("━━page : " + page);
       List<Member> members = memberService.findAll(page);
       model.addAttribute("members", members);
+      model.addAttribute("currentPage", page);
       log.info("━━size : " + members.size());
       return "memberList";
    }

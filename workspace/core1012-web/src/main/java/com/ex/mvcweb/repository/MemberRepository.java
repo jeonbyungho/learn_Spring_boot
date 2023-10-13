@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.ex.mvcweb.entity.Member;
 
@@ -18,9 +17,9 @@ import lombok.RequiredArgsConstructor;
 public class MemberRepository {
    
    /* spring이 EntityManager를 만들어 주입해주는 어노테이션
-   * @PersistenceContext가 표준 EntityManager 주입을 해준다.
-   * 그러나, @Autowired가 주입이 되도록 이러한 지원을 해준다.
-   */
+    * @PersistenceContext가 표준 EntityManager 주입을 해준다.
+    * 그러나, @Autowired가 주입이 되도록 이러한 지원을 해준다.
+    */
    //@PersistenceContext
    @Autowired
    private EntityManager em;

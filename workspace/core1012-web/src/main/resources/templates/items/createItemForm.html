@@ -1,10 +1,15 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: header" />
+<head th:replace="~{fragments/header :: header}" />
+<style>
+	.fieldError {
+		border-color: #bd2130;
+	}
+</style>
 <body>
 
 	<div class="container">
-		<div th:replace="fragments/bodyHeader :: bodyHeader" />
+		<div th:replace="~{fragments/bodyHeader :: bodyHeader}" />
 
 		<form th:action="@{/items/new}" method="post" th:object="${itemFrom}">
 			<div class="form-group">
@@ -24,7 +29,7 @@
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
 		<br />
-		<div th:replace="fragments/footer :: footer" />
+		<div th:replace="~{fragments/footer :: footer}" />
 
 	</div>
 	<!-- /container -->

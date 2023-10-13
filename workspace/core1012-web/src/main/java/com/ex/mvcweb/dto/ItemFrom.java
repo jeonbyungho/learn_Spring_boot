@@ -7,6 +7,8 @@ import lombok.ToString;
 
 @Getter @Setter @ToString
 public class ItemFrom {
+   private Long id;
+   
    @NotEmpty(message = "상품명을 적어주세요.")
    private String name;
 

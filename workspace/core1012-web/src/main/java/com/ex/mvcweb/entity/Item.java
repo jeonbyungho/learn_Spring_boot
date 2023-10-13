@@ -24,7 +24,7 @@ public class Item {
 
    private Integer price;
 
-   private Integer stock_quantity;
+   private Integer stockQuantity;
 
    // 양방향 매핑은 선택사항이다.
    /*
