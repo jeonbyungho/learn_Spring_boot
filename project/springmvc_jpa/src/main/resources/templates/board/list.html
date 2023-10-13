@@ -21,14 +21,22 @@
       </tr>
    </table>
    <div>
+      <span>
+         <a th:if="${currentPage > 1}"
+            th:href="@{/board/list/{pageNumber}(pageNumber=${currentPage} - 1)}">◀</a>
+      </span>
       <span th:each="i : ${#numbers.sequence(startPage, lastPage)}">
          <a th:text="${i}"
-         th:href="@{/board/list/{pageNumber}(pageNumber=${i})}"
-         th:if="${#strings.isEmpty(param.search)}">0</a>
+            th:if="${#strings.isEmpty(param.search)}"
+            th:href="@{/board/list/{pageNumber}(pageNumber=${i})}">0</a>
 
          <a th:text="${i}"
-         th:href="@{/board/list/{pageNumber}(pageNumber=${i}, search=${param.search})}"
-         th:unless="${#strings.isEmpty(param.search)}">0</a>
+            th:unless="${#strings.isEmpty(param.search)}"
+            th:href="@{/board/list/{pageNumber}(pageNumber=${i}, search=${param.search})}">0</a>
+      </span>
+      <span>
+         <a th:if="${lastPage < totalPage}"
+            th:href="@{/board/list/{pageNumber}(pageNumber=${currentPage} + 1)}">▶</a>
       </span>
    </div>
    

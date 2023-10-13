@@ -65,13 +65,15 @@ public class BoardController {
       List<Board> boardToList = boardPage.toList();
       
       int startPage = pageNumber > PAGESIZE? (pageNumber-1)/PAGESIZE * PAGESIZE : 1;
-      int lastPage = startPage + PAGESIZE;
+      int lastPage = startPage + PAGESIZE - 1;
       int totalPage = boardPage.getTotalPages();
       lastPage = lastPage > totalPage ? totalPage : lastPage;
 
       model.addAttribute("boardList", boardToList);
       model.addAttribute("startPage", startPage);
+      model.addAttribute("currentPage", pageNumber);
       model.addAttribute("lastPage", lastPage);
+      model.addAttribute("totalPage", totalPage);
       logger.info("startPage"+ startPage);
       logger.info("lastPage"+ lastPage);
       logger.info("totalPage"+ totalPage);

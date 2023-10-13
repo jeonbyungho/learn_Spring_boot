@@ -15,8 +15,7 @@ public class HomeController {
 
    @GetMapping("/")
    public String welcome(Model model){
-      model.addAttribute("data", "Spring");
       log.info("Get : " + getClass().getSimpleName());
-      return "welcome";
+      return "home";
    }
 }
