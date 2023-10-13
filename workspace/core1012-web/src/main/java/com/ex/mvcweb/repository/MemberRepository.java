@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ex.mvcweb.entity.Member;
 
@@ -25,12 +24,7 @@ public class MemberRepository {
    //@PersistenceContext
    @Autowired
    private EntityManager em;
-
-   /* @Transactional
-    * DB와 관련된, 트랜잭션이 필요한 서비스 클래스 혹은 메서드에 해당 어노테이션을 추가한다.
-    * 일련의 작업들을 묶어서 하나의 단위(트랜잭션)로 처리한다.
-    */
-   @Transactional
+   
    public void save(Member member) {
       em.persist(member);
    }
@@ -41,6 +35,14 @@ public class MemberRepository {
          .setMaxResults(3);
       ArrayList<Member> list = 
          new ArrayList<Member>(query.getResultList());
+      return list;
+   }
+
+   public List<Member> findByName(String name) {
+      List<Member> list = em
+         .createQuery("select m from Member m where m.name = :name", Member.class)
+         .setParameter("name", name)
+         .getResultList();
       return list;
    }
 }
