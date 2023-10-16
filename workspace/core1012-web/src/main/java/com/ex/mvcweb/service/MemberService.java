@@ -48,4 +48,8 @@ public class MemberService {
    public List<Member> findAll(int page) {
       return memberRepository.findAll(page - 1);
    }
+
+   public List<Member> findAll() {
+      return memberRepository.findAll();
+   }
 }

@@ -30,6 +30,10 @@ public class ItemService {
       return itemRepository.findAll(page - 1);
    }
 
+   public List<Item> findAll() {
+      return itemRepository.findAll();
+   }
+
    public Item findOne(long id){
       return itemRepository.finById(id);
    }

@@ -1,5 +1,7 @@
 package com.ex.mvcweb.entity;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,6 +15,7 @@ import lombok.ToString;
 @Entity
 @SequenceGenerator(name = "item_seq_generator", sequenceName = "item_seq",
    initialValue = 1, allocationSize = 1)
+@DynamicUpdate
 @Getter @Setter @ToString
 public class Item {
    @Id

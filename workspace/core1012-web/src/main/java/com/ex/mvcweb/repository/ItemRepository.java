@@ -34,6 +34,10 @@ public class ItemRepository {
       return list;
    }
 
+   public List<Item> findAll(){
+      return em.createQuery("select m from Item m order by m.id desc", Item.class).getResultList();
+   }
+
    public Item finById(long id) {
       return em.find(Item.class, id);
    }
