@@ -11,9 +11,8 @@
 				<label for="member">주문회원</label> 
 				<select th:field="*{memberId}" name="memberId" id="member" class="form-control">
 					<option value="">회원 선택</option>
-					<div th:each="member : ${members}">
-						<option th:value="${member.id}" th:text="${member.name}"></option>
-					</div>
+					<option th:each="member : ${members}" 
+						th:value="${member.id}" th:text="${member.name}"/>
 				</select>
 			</div>
 
@@ -21,9 +20,8 @@
 				<label for="item">상품명</label> 
 				<select th:field="*{itemId}" name="itemId" id="item" class="form-control">
 					<option value="">상품 선택</option>
-					<div th:each=" item : ${items}">
-						<option th:value="${item.id}" th:text="${item.name}"></option>
-					</div>
+					<option th:each="item : ${items}" 
+						th:value="${item.id}" th:text="${item.name}"/>
 				</select>
 			</div>
 
