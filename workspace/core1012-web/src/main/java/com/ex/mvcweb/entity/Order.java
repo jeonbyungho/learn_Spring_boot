@@ -35,22 +35,37 @@ public class Order {
 
    @ManyToOne
    @JoinColumn(name="member_id")
-   @Setter(value = AccessLevel.NONE)
    private Member member;
    
    private LocalDate orderDate;
 
    @OneToMany(mappedBy = "order")
+   @Setter(AccessLevel.NONE)
    private List<OrderItem> orderItems  = new ArrayList<>();
 
-   public void setMember(Member member) {
-      member.addOrder(this);
-      this.member = member;
-   }
-   
-   public void addOrderItem(OrderItem orderItem){
-      orderItem.setOrder(this);
+   private void addOrderItem(OrderItem orderItem) {
       this.orderItems.add(orderItem);
+      orderItem.setOrder(this);
+   }
+
+   // public static Order createOrder(Member member, OrderItem orderItem) {
+   //    Order order = new Order();
+   //    order.setMember(member);
+   //    order.addOrderItem(orderItem);
+   //    order.setStatus(OrderStatus.ORDER);
+   //    order.setOrderDate(LocalDate.now());
+   //    return order;
+   // }
+
+   public static Order createOrder(Member member, OrderItem... orderItems) {
+      Order order = new Order();
+      order.setMember(member);
+      for(OrderItem orderItem :orderItems){
+         order.addOrderItem(orderItem);
+      }
+      order.setStatus(OrderStatus.ORDER);
+      order.setOrderDate(LocalDate.now());
+      return order;
    }
 
 }

@@ -28,6 +28,10 @@ public class MemberRepository {
       em.persist(member);
    }
 
+   public Member findById(Long id){
+      return em.find(Member.class, id);
+   }
+
    public List<Member> findAll(int page) {
       TypedQuery<Member> query = em.createQuery("select m from Member m order by m.id desc", Member.class)
          .setFirstResult(page*3)

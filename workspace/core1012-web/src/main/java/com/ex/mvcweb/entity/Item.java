@@ -2,6 +2,8 @@ package com.ex.mvcweb.entity;
 
 import org.hibernate.annotations.DynamicUpdate;
 
+import com.ex.mvcweb.exception.NotEnoughStockException;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,13 +31,12 @@ public class Item {
 
    private Integer stockQuantity;
 
-   // 양방향 매핑은 선택사항이다.
-   /*
-   @OneToMany(mappedBy = "item")
-   private List<OrderItem> orderItems = new ArrayList<>();
-   public void addOrderItem(OrderItem orderItem){
-      orderItem.setItem(this);
-      this.orderItems.add(orderItem);
+   public void removeStook(int count) {
+      int restStock = this.stockQuantity - count;
+      // 재고가 부족할 경우..
+      if(restStock < 0){
+         throw new NotEnoughStockException("Not more Stock");
+      }
+      this.stockQuantity = restStock;
    }
-   */
 }

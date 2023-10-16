@@ -34,4 +34,16 @@ public class OrderItem {
    @JoinColumn(name = "order_id")
    private Order order;
 
+   public static OrderItem createOrderItem(Item item, int price, int count){
+      // ━━▶ price는 할인, 쿠폰 등 가격에 변동이 생겼을 때 비지니스 로직 작성 필요함.
+      OrderItem orderItem = new OrderItem();
+      orderItem.setItem(item);
+      orderItem.setOrderPrice(price);
+      orderItem.setCount(count);
+      // ━━▶ 주문한 만큼 재고 조정해야 됨.
+      item.removeStook(count);
+      
+      return orderItem;
+   }
+
 }
