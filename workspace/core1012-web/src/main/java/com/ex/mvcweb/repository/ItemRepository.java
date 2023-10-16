@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ex.mvcweb.dto.ItemFrom;
 import com.ex.mvcweb.entity.Item;
 
 import jakarta.persistence.EntityManager;
@@ -31,5 +32,9 @@ public class ItemRepository {
       ArrayList<Item> list = 
          new ArrayList<Item>(query.getResultList());
       return list;
+   }
+
+   public Item finById(long id) {
+      return em.find(Item.class, id);
    }
 }

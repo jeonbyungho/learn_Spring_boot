@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,7 +47,7 @@ public class ItemController {
    }
 
    @GetMapping
-   public String memberList(
+   public String itemList(
          @RequestParam(defaultValue = "1", required = false) Integer page, 
          Model model){
       log.info("━━page : " + page);
@@ -55,5 +56,43 @@ public class ItemController {
       model.addAttribute("currentPage", page);
       log.info("━━size : " + items.size());
       return "items/itemList";
+   }
+
+   @GetMapping("/{itemNo}/edit")
+   public String editItem(@PathVariable Long itemNo, Model model){
+      Item item = itemService.findOne(itemNo);
+      log.info("item : " + item.toString());
+      ItemFrom itemFrom = new ItemFrom();
+      itemFrom.setId(item.getId());
+      itemFrom.setName(item.getName());
+      itemFrom.setPrice(item.getPrice());
+      itemFrom.setStockQuantity(item.getStockQuantity());
+      model.addAttribute("itemFrom", itemFrom);
+      return "items/updateItemForm";
+   }
+
+   //@PostMapping("/{itemNo}/edit")
+   public String editItem1(@PathVariable Long itemNo,
+         @Valid ItemFrom itemFrom, BindingResult bindingResult,
+         Model model){
+      log.info("Post From : " + itemFrom.toString());
+
+      Item item = new Item();
+      item.setId(itemNo);
+      item.setName(itemFrom.getName());
+      item.setPrice(itemFrom.getPrice());
+      item.setStockQuantity(itemFrom.getStockQuantity());
+      itemService.edit(itemNo, item);
+      return "redirect:/items/" + itemNo + "/edit";
+   }
+
+   @PostMapping("/{itemNo}/edit")
+   public String editItem2(@PathVariable Long itemNo,
+         @Valid ItemFrom itemFrom, BindingResult bindingResult,
+         Model model){
+      log.info("Post From : " + itemFrom.toString());
+      itemService.edit(itemNo, itemFrom.getName(), itemFrom.getPrice(), itemFrom.getStockQuantity());
+      
+      return "redirect:/items/" + itemNo + "/edit";
    }
 }
