@@ -29,22 +29,22 @@ public class MemberController {
    private final MemberService memberService;
    
    @GetMapping("/new")
-   public String createMember(@ModelAttribute MemberForm memberFrom){
+   public String createMember(@ModelAttribute MemberForm memberForm){
       return "createMemberForm";
    }
 
    // @Valid 다음에 BindingResult기 있으면, error를 바인딩한다.
    @PostMapping("/new")
-   public String createMember(@Valid MemberForm memberFrom, BindingResult bindingResult) 
+   public String createMember(@Valid MemberForm memberForm, BindingResult bindingResult) 
          throws IllegalAccessException {
       if(bindingResult.hasErrors()) {
          log.info("유효성 검사 \n" + bindingResult.getAllErrors().toString());
          return "createMemberForm";
       }
 
-      Address address = new Address(memberFrom.getCity(), memberFrom.getStreet(), memberFrom.getZipcode());
+      Address address = new Address(memberForm.getCity(), memberForm.getStreet(), memberForm.getZipcode());
       Member member = new Member();
-      member.setName(memberFrom.getName());
+      member.setName(memberForm.getName());
       member.setAddress(address);
       memberService.join(member);
       return "redirect:/";
