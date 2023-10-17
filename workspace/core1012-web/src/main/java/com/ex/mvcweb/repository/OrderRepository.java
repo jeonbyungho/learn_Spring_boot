@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ex.mvcweb.entity.Order;
+import com.ex.mvcweb.entity.QMember;
+import com.ex.mvcweb.entity.QOrder;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
@@ -37,8 +40,14 @@ public class OrderRepository {
          .getResultList();
    }
 
-   public List<Order> findAll(OrderSearch orderSearch) { 
-      return null;
+   public List<Order> findAll(OrderSearch orderSearch) {
+      JPAQueryFactory query = new JPAQueryFactory(em);
+      QOrder order = QOrder.order;
+      QMember member = QMember.member;
+      return query.select(order).from(order)
+         .join(order.member, member)
+         .where(order.status.eq(orderSearch.getOrderStatus()), member.name.like(orderSearch.getMemberName()))
+         .fetch();
    }
    
 }

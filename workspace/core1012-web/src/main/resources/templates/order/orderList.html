@@ -35,13 +35,13 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+					<tr th:each="order : ${orders}">
+						<td th:text="${order.id}"></td>
+						<td th:text="${order.member.name}"></td>
+						<td th:text="${order.addOrderItem[0].item.name}"></td>
+						<td th:text="${order.addOrderItem[0].orderPrice}"></td>
+						<td th:text="${order.addOrderItem[0].count}"></td>
+						<td th:text="${order.status}"></td>
 						<td><a class="btn btn-danger">CANCEL</a>
 						</td>
 					</tr>
