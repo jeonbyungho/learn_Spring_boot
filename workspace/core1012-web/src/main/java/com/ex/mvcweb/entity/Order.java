@@ -9,6 +9,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -34,7 +35,7 @@ public class Order {
    private OrderStatus status;
 
    @ManyToOne
-   @JoinColumn(name="member_id")
+   @JoinColumn(name="member_id") 
    @Setter(AccessLevel.NONE)
    private Member member;
    public void setMember(Member member) {
@@ -44,8 +45,7 @@ public class Order {
    
    private LocalDate orderDate;
 
-   @Setter(lombok.AccessLevel.NONE)
-   @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+   @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
    private List<OrderItem> orderItems = new ArrayList<>();
 
    private void addOrderItem(OrderItem orderItem) {
