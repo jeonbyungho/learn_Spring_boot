@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.ex.mvcweb.dto.MemberFrom;
+import com.ex.mvcweb.dto.MemberForm;
 import com.ex.mvcweb.entity.Member;
 import com.ex.mvcweb.entity.Address;
 import com.ex.mvcweb.service.MemberService;
@@ -29,13 +29,13 @@ public class MemberController {
    private final MemberService memberService;
    
    @GetMapping("/new")
-   public String createMember(@ModelAttribute MemberFrom memberFrom){
+   public String createMember(@ModelAttribute MemberForm memberFrom){
       return "createMemberForm";
    }
 
    // @Valid 다음에 BindingResult기 있으면, error를 바인딩한다.
    @PostMapping("/new")
-   public String createMember(@Valid MemberFrom memberFrom, BindingResult bindingResult) 
+   public String createMember(@Valid MemberForm memberFrom, BindingResult bindingResult) 
          throws IllegalAccessException {
       if(bindingResult.hasErrors()) {
          log.info("유효성 검사 \n" + bindingResult.getAllErrors().toString());

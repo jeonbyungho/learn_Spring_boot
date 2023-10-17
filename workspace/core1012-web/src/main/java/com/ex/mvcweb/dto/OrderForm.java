@@ -5,7 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Getter @Setter @ToString
-public class OrderFrom {
+public class OrderForm {
    private Long memberId;
    private Long itemId;
    private Integer count;

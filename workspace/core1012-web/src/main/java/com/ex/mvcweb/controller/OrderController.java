@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.ex.mvcweb.dto.OrderFrom;
+import com.ex.mvcweb.dto.OrderForm;
 import com.ex.mvcweb.entity.Order;
 import com.ex.mvcweb.service.ItemService;
 import com.ex.mvcweb.service.MemberService;
@@ -27,14 +27,14 @@ public class OrderController {
    private final ItemService itemService;
 
    @GetMapping
-   public String order(@ModelAttribute OrderFrom orderFrom, Model model){
+   public String order(@ModelAttribute OrderForm orderFrom, Model model){
       model.addAttribute("members", memberService.findAll());
       model.addAttribute("items", itemService.findAll());
       return "/order/orderForm";
    }
 
    @PostMapping
-   public String order(@Valid OrderFrom orderFrom){
+   public String order(@Valid OrderForm orderFrom){
       Order order = new Order();
       orderService.add(orderFrom);
       return "redirect:/items";

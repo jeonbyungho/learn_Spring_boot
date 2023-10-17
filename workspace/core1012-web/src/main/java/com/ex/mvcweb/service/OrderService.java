@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ex.mvcweb.dto.OrderFrom;
+import com.ex.mvcweb.dto.OrderForm;
 import com.ex.mvcweb.entity.Item;
 import com.ex.mvcweb.entity.Member;
 import com.ex.mvcweb.entity.Order;
@@ -25,7 +25,7 @@ public class OrderService {
    private final ItemRepository itemRepository;
 
    @Transactional
-   public Long add(OrderFrom orderFrom) {
+   public Long add(OrderForm orderFrom) {
       Member member = memberRepository.findById(orderFrom.getMemberId());
       Item item = itemRepository.finById(orderFrom.getItemId());
 

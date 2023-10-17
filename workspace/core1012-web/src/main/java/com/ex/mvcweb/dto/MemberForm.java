@@ -6,13 +6,13 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Getter @Setter @ToString
-public class ItemFrom {
-   private Long id;
-   
-   @NotEmpty(message = "상품명을 적어주세요.")
+public class MemberForm {
+   @NotEmpty(message = "이름을 적어주세요.")
    private String name;
-
-   private Integer price;
-
-   private Integer stockQuantity;
+   
+   private String city;
+   
+   private String street;
+   
+   private String zipcode;
 }
