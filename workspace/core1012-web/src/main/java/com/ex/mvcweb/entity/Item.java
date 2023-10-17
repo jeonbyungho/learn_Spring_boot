@@ -17,7 +17,6 @@ import lombok.ToString;
 @Entity
 @SequenceGenerator(name = "item_seq_generator", sequenceName = "item_seq",
    initialValue = 1, allocationSize = 1)
-@DynamicUpdate
 @Getter @Setter @ToString
 public class Item {
    @Id
@@ -38,5 +37,9 @@ public class Item {
          throw new NotEnoughStockException("Not more Stock");
       }
       this.stockQuantity = restStock;
+   }
+
+   public void addStock(int count){
+      this.stockQuantity += count;
    }
 }

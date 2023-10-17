@@ -22,9 +22,9 @@ public class OrderItem {
    @Column(name = "order_item_id")
    private Long id;
 
-   private Integer count;
+   private int count;
    
-   private Integer orderPrice;
+   private int orderPrice;
 
    @ManyToOne
    @JoinColumn(name = "item_id")
@@ -44,6 +44,10 @@ public class OrderItem {
       item.removeStook(count);
       
       return orderItem;
+   }
+
+   public void cancel() {
+      getItem().addStock(count);
    }
 
 }

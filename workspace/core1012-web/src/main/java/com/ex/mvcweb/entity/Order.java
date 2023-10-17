@@ -19,12 +19,11 @@ import jakarta.persistence.SequenceGenerator;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity(name = "orders")
 @SequenceGenerator(name = "order_seq_generator", sequenceName = "order_seq",
    initialValue = 1, allocationSize = 1)
-@Getter @Setter @ToString(exclude = "orderItems")
+@Getter @Setter
 public class Order {
    @Id
    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_seq_generator")
@@ -36,37 +35,40 @@ public class Order {
 
    @ManyToOne
    @JoinColumn(name="member_id")
+   @Setter(AccessLevel.NONE)
    private Member member;
+   public void setMember(Member member) {
+		this.member = member;
+		member.getOrders().add(this);
+	}
    
    private LocalDate orderDate;
 
+   @Setter(lombok.AccessLevel.NONE)
    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-   @Setter(AccessLevel.NONE)
-   private List<OrderItem> orderItems  = new ArrayList<>();
+   private List<OrderItem> orderItems = new ArrayList<>();
 
    private void addOrderItem(OrderItem orderItem) {
       this.orderItems.add(orderItem);
       orderItem.setOrder(this);
    }
 
-   // public static Order createOrder(Member member, OrderItem orderItem) {
-   //    Order order = new Order();
-   //    order.setMember(member);
-   //    order.addOrderItem(orderItem);
-   //    order.setStatus(OrderStatus.ORDER);
-   //    order.setOrderDate(LocalDate.now());
-   //    return order;
-   // }
-
    public static Order createOrder(Member member, OrderItem... orderItems) {
       Order order = new Order();
       order.setMember(member);
-      for(OrderItem orderItem :orderItems){
+      for(OrderItem orderItem : orderItems){
          order.addOrderItem(orderItem);
       }
       order.setStatus(OrderStatus.ORDER);
       order.setOrderDate(LocalDate.now());
       return order;
+   }
+
+   public void cancel() {
+      this.setStatus(OrderStatus.CANCEL);
+      for(OrderItem orderItem : orderItems){
+         orderItem.cancel();
+      }
    }
 
 }

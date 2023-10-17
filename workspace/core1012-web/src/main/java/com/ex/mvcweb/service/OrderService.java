@@ -36,8 +36,20 @@ public class OrderService {
       orderRepository.save(order);
       return order.getId();
    }
-
+   
    public List<Order> findAll(OrderSearch orderSearch) {
       return orderRepository.findAll(orderSearch);
+   }
+
+   @Transactional
+   public void cancelOrder(Long orderId) {
+      Order order = orderRepository.findOne(orderId);
+      /*
+       * 주문 취소 시 수량 update, 상태 값 변경에 처리 각각 해줘야 하나
+       * 데이터들만 바꿔주면 JPA는 해당 값들을 변경을 하고 (변경 감지, 변경 내용 감지)
+       * 변경내역 감지가 변경된 내용들을 다 찾아서 데이터베이스에 업데이트 쿼리가 전송된다.
+       * 여기서 Order의 상태 변경 update, Item의 stockQuantity가 변경된다.
+       */
+      order.cancel();
    }
 }
