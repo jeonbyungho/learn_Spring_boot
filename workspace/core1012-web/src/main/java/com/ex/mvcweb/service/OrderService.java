@@ -1,6 +1,7 @@
 package com.ex.mvcweb.service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +14,7 @@ import com.ex.mvcweb.entity.OrderItem;
 import com.ex.mvcweb.repository.ItemRepository;
 import com.ex.mvcweb.repository.MemberRepository;
 import com.ex.mvcweb.repository.OrderRepository;
+import com.ex.mvcweb.repository.OrderSearch;
 
 import lombok.RequiredArgsConstructor;
 
@@ -32,7 +34,11 @@ public class OrderService {
       OrderItem orderItem = OrderItem.createOrderItem(item, item.getPrice(), orderFrom.getCount());
       Order order = Order.createOrder(member, orderItem);
       
-      orderRepository.save(order, orderItem);
+      orderRepository.save(order);
       return order.getId();
+   }
+
+   public List<Order> findAll(OrderSearch orderSearch) {
+      return orderRepository.findAll(orderSearch);
    }
 }

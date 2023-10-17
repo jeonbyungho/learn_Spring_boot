@@ -6,7 +6,7 @@
 	<div class="container">
 		<div th:replace="~{fragments/bodyHeader :: bodyHeader}" />
 
-		<form role="form" th:action th:object="${orderFrom}" action="/order" method="post">
+		<form role="form" th:action th:object="${orderForm}" action="/order" method="post">
 			<div class="form-group">
 				<label for="member">주문회원</label> 
 				<select th:field="*{memberId}" name="memberId" id="member" class="form-control">

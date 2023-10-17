@@ -1,7 +1,10 @@
 package com.ex.mvcweb.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ex.mvcweb.dto.OrderForm;
 import com.ex.mvcweb.entity.Order;
+import com.ex.mvcweb.repository.OrderSearch;
 import com.ex.mvcweb.service.ItemService;
 import com.ex.mvcweb.service.MemberService;
 import com.ex.mvcweb.service.OrderService;
@@ -27,21 +31,25 @@ public class OrderController {
    private final ItemService itemService;
 
    @GetMapping
-   public String order(@ModelAttribute OrderForm orderFrom, Model model){
+   public String order(@ModelAttribute OrderForm orderForm, Model model){
       model.addAttribute("members", memberService.findAll());
       model.addAttribute("items", itemService.findAll());
       return "/order/orderForm";
    }
 
    @PostMapping
-   public String order(@Valid OrderForm orderFrom){
-      Order order = new Order();
-      orderService.add(orderFrom);
-      return "redirect:/items";
+   public String order(@Valid OrderForm orderForm, BindingResult bindingResult){
+      if(bindingResult.hasErrors()){
+         return "/order/orderForm";
+      }
+      orderService.add(orderForm);
+      return "redirect:/order/list";
    }
 
    @GetMapping("/list")
-   public String orderList(){
-      return "/order/";
+   public String orderList(@ModelAttribute OrderSearch orderSearch, Model model){
+      List<Order> orders = orderService.findAll(orderSearch);
+      model.addAttribute("orders", orders);
+      return "/order/orderList";
    }
 }
