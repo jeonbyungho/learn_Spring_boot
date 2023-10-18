@@ -13,7 +13,7 @@ public class URLReader {
 
    private String searchKeyword = "https://apis.data.go.kr/B551011/KorService1/searchKeyword1";
    private String detailCommon = "https://apis.data.go.kr/B551011/KorService1/detailCommon1";
-   private String key = "encoding";
+   private String key = "encodingkey";
    
    public String keyword(String keyword, int numOfRows, int pageNo) {
       keyword = URLEncoder.encode(keyword, StandardCharsets.UTF_8);
