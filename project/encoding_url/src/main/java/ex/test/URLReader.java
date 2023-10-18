@@ -13,7 +13,7 @@ public class URLReader {
 
    private String searchKeyword = "https://apis.data.go.kr/B551011/KorService1/searchKeyword1";
    private String detailCommon = "https://apis.data.go.kr/B551011/KorService1/detailCommon1";
-   private String key = "encodingKey";
+   private String key = "encoding";
    
    public String keyword(String keyword, int numOfRows, int pageNo) {
       keyword = URLEncoder.encode(keyword, StandardCharsets.UTF_8);
@@ -28,6 +28,7 @@ public class URLReader {
          .queryParam("pageNo", pageNo)
          .build().toUriString()
       ;
+
       System.out.println(uriBuilder);
 
       try {
@@ -53,6 +54,7 @@ public class URLReader {
          .queryParam("contentId", contentId)
          .queryParam("MobileOS", "ETC")
          .queryParam("MobileApp", "AppTest")
+         .queryParam("_type", "json")
          .queryParam("defaultYN", "Y")
          .queryParam("firstImageYN", "Y")
          .queryParam("areacodeYN", "Y")
