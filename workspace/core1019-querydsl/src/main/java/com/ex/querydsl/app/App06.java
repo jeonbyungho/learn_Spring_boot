@@ -3,11 +3,11 @@ package com.ex.querydsl.app;
 import com.ex.querydsl.entity.Member;
 import com.ex.querydsl.entity.Team;
 import com.querydsl.core.Tuple;
+import com.querydsl.core.types.dsl.CaseBuilder;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import static com.ex.querydsl.entity.QMember.*;
-import static com.ex.querydsl.entity.QTeam.*;
 import java.util.List;
 
 import jakarta.persistence.EntityManager;
@@ -60,6 +60,14 @@ public class App06 {
                   .otherwise("기타")
             ).from(member)
             .fetch();
+         
+         List<String> result4 = queryFactory.select( new CaseBuilder()
+            .when(member.age.between(0, 20)).then("0~20살")
+            .when(member.age.between(21, 30)).then("21~30살")
+            .when(member.age.between(31, 40)).then("31~40살")
+            .otherwise("기타")
+         ).from(member)
+         .fetch();
 
          tx.commit();
          System.out.println("────────────────────────────────────────────────");
@@ -77,7 +85,10 @@ public class App06 {
             ));
          }
 
+         System.out.println("\nwhen then then");
          System.out.println(result3.toString());
+         System.out.println("\nCaseBuilder when ");
+         System.out.println(result4.toString());
          System.out.println("────────────────────────────────────────────────");
       } catch (Exception e){
          tx.rollback();

@@ -28,7 +28,7 @@ public class App05 {
          em.persist(teamA);
          em.persist(teamB);
 
-         for(int i=0; i < 50; i++){
+         for(int i=0; i < 20; i++){
             Member m = new Member("member" + i, 10 + i , (i%2 == 0) ? teamA : teamB);
             em.persist(m);
          }
@@ -50,7 +50,7 @@ public class App05 {
             .from(member)
             .leftJoin(member.team, team)
             .groupBy(team.name)
-            .having(member.age.avg().gt(34))
+            .having(member.age.avg().gt(19))
             .fetch();
          
          List<Tuple> result4 = queryFactory.select(member, team)
@@ -84,7 +84,7 @@ public class App05 {
             System.out.println(tuple.toString());
          }
 
-         System.out.println("\ngroupBy having avg().gt(34)");
+         System.out.println("\ngroupBy having avg().gt(19)");
          for(Tuple tuple : result3){
             System.out.println(tuple.toString());
          }
